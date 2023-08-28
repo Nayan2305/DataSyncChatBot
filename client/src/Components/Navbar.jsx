@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Navbar.css";
 import image from './image.jpeg';
 
@@ -6,18 +7,21 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-      <img src={image} alt="IMAGE" width="100" height="50"/>
-        {/* <div className="logo">Sunshine Powertronics</div> */}
+        <Link to="/">
+          <img src={image} alt="Logo" width="100" height="50" />
+        </Link>
       </div>
       <div className="navbar-middle">
         <ul className="navbar-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><Link >Home</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
+          <li><Link to="/about">About Us</Link></li>
         </ul>
       </div>
       <div className="navbar-right">
-        <button to='/Login' className="login-button">Login / Register</button>
+        <Link to="/login">
+          <button className="login-button">Login / Register</button>
+        </Link>
       </div>
     </nav>
   );
