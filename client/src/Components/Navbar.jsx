@@ -2,7 +2,9 @@ import React from "react";
 import "./Navbar.css";
 import image from './image.jpeg';
 
+
 const Navbar = () => {
+ 
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -11,9 +13,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-middle">
         <ul className="navbar-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="/Home">Home</a></li>
+          <li><a href="/Contact">Contact Us</a></li>
+          <li><a href="About">About Us</a></li>
         </ul>
       </div>
       <div className="navbar-right">

@@ -1,0 +1,74 @@
+.Home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  background-color: rgb(236, 236, 236);
+  gap: 100px;
+  border-radius: 20px;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif, Geneva, Tahoma, sans-serif;
+}
+
+.stats-container {
+  width: 100%;
+  border-width: 0.5rem;
+  border-radius: 20px;
+  border-style: double;
+  background-color: rgb(170, 211, 228);
+  height: 220px;
+  display: flex; /* Added this */
+  align-items: center;
+  justify-content: center;
+}
+
+.content-box {
+  background-color: azure;
+  width: 50%;
+  border-radius: 20px;
+  border-width: 5px;
+  border-style: double;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+}
+
+.centered-content h3 {
+  margin: 0.5rem 0; 
+}
+
+.content-box {
+  background-color: azure;
+  width: 50%;
+  border-radius: 20px;
+  border-width: 5px;
+  border-style: double;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  justify-content: center;
+  margin-top: 20px; /* Adjust margin as needed */
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #8c9093;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #278aee;
+}
+
