@@ -1,61 +1,107 @@
-/* Navbar styles */
+/* Default styles for desktop and mobile */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    background-color: rgb(255, 255, 255); /* White background */
-    padding: 10px 20px;
-    box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1); /* Optional: Add a shadow */
-  }
-  
-  /* Logo on the left */
-  .logo {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  
-  /* Navbar menu in the middle */
-  .navbar-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar-menu li {
-    margin-right: 20px;
-  }
-  
-  .navbar-menu li:last-child {
-    margin-right: 0;
-  }
-  
-  .navbar-menu a {
-    text-decoration: none;
-    color: #333; /* Text color for menu items */
-    font-weight: 400;
-  }
-  
-  /* Login button on the right */
-  .navbar-right .login-button {
-    background-color: rgb(0, 82, 195); /* Blue color for the button */
-    color: white;
-    border: none;
-    font-weight: 400;
-    border-radius: 18px;
-    padding: 10px 20px;
-    margin-top: 10px; /* Add margin to move it down */
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .navbar-right .login-button:hover {
-    background-color: rgb(0, 60, 144) /* Darker blue on hover */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1);
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.navbar-menu {
+  list-style: none;
+  margin-left: 120px;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-menu li {
+  margin-right: 20px;
+}
+
+.navbar-menu li:last-child {
+  margin-right: 0;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+}
+
+.navbar-right .login-button {
+  background-color: rgb(0, 82, 195);
+  color: white;
+  border: none;
+  font-weight: 200;
+  border-radius: 18px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.navbar-right .login-button:hover {
+  background-color: rgb(0, 60, 144);
+}
 
 .active-link {
   text-decoration: underline;
-  text-underline-offset: 3px; /* Offset from the bottom */
-  color: #007bff; /* Change the color for the active link */
+  text-underline-offset: 3px;
+  color: #007bff;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 12px;
+}
+
+.user-text {
+  margin-top: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight:400;
+}
+
+/* Styles for mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    margin-top: 20px;
+    max-height: 200px; /* Add a max height and enable overflow for scrollbar */
+    overflow-y: auto; /* Enable vertical scrollbar */
+  }
+
+  .navbar-menu li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar-right {
+    margin-top: 20px;
+    justify-content: center; /* Center the toggle button horizontally */
+  }
+
 }
