@@ -3,32 +3,34 @@ import {Navbar} from "../Components/index.js"
 import './Home.css'
 import { useNavigate } from "react-router-dom";
 
-
 const Home = () => {
   const navigate = useNavigate();
 
   return (
     <>
       <Navbar />
-      <div className='Home-container'>
-        <div className='stats-container'>
-          <div className='content-box'>
-            <div className="centered-content">
-              <h3>Total Users: 12</h3>
-              <h3>Online Users: 10</h3>
-              <h3>Total Users: 12</h3>
-              <h3>Online Users: 10</h3>
-            </div>
-          </div>          
-        </div>
-        
-          <div className='content-box'>
-            <div className='buttons'>
-              <button className='button'>Add User</button>
-              <button className='button' onClick={() => navigate('/AddMachine')}>Add Machine</button>
-            </div>
+      <div className="card-container">
+      <div className="card">
+        <div className="card-inner">
+          <div className="card-front">
+            <h2>Total Users</h2>
+            <p>12</p>
+            <h2>Online Users</h2>
+            <p>10</p>
           </div>
+          <div className="card-back">
+            <h2>Total Users</h2>
+            <p>12</p>
+            <h2>Online Users</h2>
+            <p>10</p>
+          </div>
+        </div>
       </div>
+      <div className="buttons">
+        <button className="add-button">Add User</button>
+        <button className="add-button" onClick={navigate('/AddMachine')}>Add Machine</button>
+      </div>
+    </div>
     </>
   );
 }
