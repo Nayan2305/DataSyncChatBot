@@ -20,7 +20,7 @@ const Register = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1 className="instagram-logo">Sign Up</h1>
+        <h2 className="instagram-logo">Sign Up</h2>
         <form>
           <input
             className="input-field"

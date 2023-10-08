@@ -14,9 +14,7 @@ const User = () => {
     bot_id:"1234",
     bot_token:"ifi48f9wdf8"
   });
-  const click = () =>{
-    navigate('/Home')
-  }
+
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -34,18 +32,19 @@ const User = () => {
     });
   };
 
+  const returnHome = () => {
+    navigate('/Home');
+  };
+
   return (
     <>
-     <div class="center">
-        <button onClick={click}  class="return">Return Home</button>
-    </div>
-    <div className="centered-container">
-      <div className="user-profile">
-        <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
-        <h2 className="user-name">{userData.username}</h2>
-        <table className="user-profile-table">
-  <tbody>
-    <tr className={isEditing ? "" : "marked-row"}>
+      <div className="centered-container">
+        <div className="user-profile">
+          <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
+          <h2 className="user-name">{userData.username}</h2>
+          <table className="user-profile-table">
+            <tbody>
+                 <tr className={isEditing ? "" : "marked-row"}>
       <td className="entry-label">Phone Number:</td>
       <td className="entry-value">
         {isEditing ? (
@@ -102,19 +101,22 @@ const User = () => {
       {(userData.bot_token)}
       </td>
     </tr>
-  </tbody>
-</table>
-        {isEditing ? (
-          <button className="save-button" onClick={handleSaveClick}>
-            Save
+            </tbody>
+          </table>
+          {isEditing ? (
+            <button className="save-button" onClick={handleSaveClick}>
+              Save
+            </button>
+          ) : (
+            <button className="edit-button" onClick={handleEditClick}>
+              Edit
+            </button>
+          )}
+          <button className="save-button" onClick={returnHome}>
+            ReturnHome 
           </button>
-        ) : (
-          <button className="edit-button" onClick={handleEditClick}>
-            Edit
-          </button>
-        )}
+        </div>
       </div>
-    </div>
     </>
   );
 };

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-social">
-        <a href="#" className="social-icon">
+        {/* <a href="#" className="social-icon">
           <i className="fa fa-facebook"></i>
         </a>
         <a href="#" className="social-icon">
@@ -13,7 +13,7 @@ const Footer = () => {
         </a>
         <a href="#" className="social-icon">
           <i className="fa fa-instagram"></i>
-        </a>
+        </a> */}
         {/* Add more social media icons as needed */}
       </div>
       <div className="footer-text">
