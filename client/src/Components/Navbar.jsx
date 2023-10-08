@@ -1,11 +1,29 @@
-import React from 'react'
+import React from "react";
+import "./Navbar.css";
+import image from './image.jpeg';
+
 
 const Navbar = () => {
+ 
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <nav className="navbar">
+      <div className="navbar-left">
+      <img src={image} alt="IMAGE" width="100" height="50"/>
+        {/* <div className="logo">Sunshine Powertronics</div> */}
+      </div>
+      <div className="navbar-middle">
+        <ul className="navbar-menu">
+          <li><a href="/Home">Home</a></li>
+          <li><a href="/Contact">Contact Us</a></li>
+          <li><a href="/Admin">Admin</a></li>
+          <li><a href="About">About Us</a></li>
+        </ul>
+      </div>
+      <div className="navbar-right">
+        <button to='/Login' className="login-button">Login / Register</button>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
