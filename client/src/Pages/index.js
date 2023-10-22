@@ -6,3 +6,4 @@ export { default as Register } from "./Register";
 export { default as PageNotFound } from "./PageNotFound";
 export { default as Contact} from "./Contact";
 export { default as User } from "./user";
+export {default as About } from "./About";
