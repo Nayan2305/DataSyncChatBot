@@ -1,4 +1,13 @@
-import React from 'react'
+import React, { useState } from "react";
+import "./Login.css"; // Import your CSS file
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import OtpInput from "otp-input-react";
+import { toast, Toaster } from "react-hot-toast";
+import { auth } from "../firebase.config";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { CgSpinner } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
