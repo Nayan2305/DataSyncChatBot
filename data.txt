@@ -1,0 +1,87 @@
+// server.js  --> query fire code
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 5000;
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/machines', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const MachineSchema = new mongoose.Schema({
+  type: String,
+  rights: [String],
+  parameters: {
+    param1: String,
+    param2: String,
+    param3: String,
+    param4: String,
+    param5: String,
+    param6: String,
+    param7: String,
+    param8: String,
+    param9: String,
+    param10: String,
+  },
+});
+
+const Machine = mongoose.model('Machine', MachineSchema);
+
+app.use(bodyParser.json());
+
+// Create a new machine
+app.post('/api/add-machine', async (req, res) => {
+  const {
+    type,
+    rights,
+    parameters: {
+      param1,
+      param2,
+      param3,
+      param4,
+      param5,
+      param6,
+      param7,
+      param8,
+      param9,
+      param10,
+    },
+  } = req.body;
+
+  // Filter out null parameters
+  const filteredParameters = Object.fromEntries(
+    Object.entries({
+      param1,
+      param2,
+      param3,
+      param4,
+      param5,
+      param6,
+      param7,
+      param8,
+      param9,
+      param10,
+    }).filter(([key, value]) => value !== null && value !== undefined)
+  );
+
+  try {
+    const newMachine = new Machine({
+      type,
+      rights,
+      parameters: filteredParameters,
+    });
+
+    await newMachine.save();
+    res.status(200).json({ message: 'Machine added successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding machine', error: error.message });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
