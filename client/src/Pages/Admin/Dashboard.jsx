@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-//import image from "client\src\Components\image.jpeg"
 import { useNavigate } from "react-router-dom";
-
-
-import image from './image.jpeg'
+import image from './image.jpeg';
+import './Dashboard.css';
 import {
   styled,
   useTheme,
@@ -82,7 +80,7 @@ function Dashboard() {
           },
         }}
         variant="persistent"
-        anchor="left" // Position the sidebar on the left
+        anchor="left"
         open={open}
       >
         <DrawerHeader>
@@ -92,7 +90,7 @@ function Dashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-        <ListItem disablePadding>
+          <ListItem disablePadding>
             <ListItemButton onClick={() => navigate('/Admin/TotalUsers')}>
               <ListItemIcon>
                 <Person2OutlinedIcon />
@@ -101,7 +99,7 @@ function Dashboard() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton  onClick={() => navigate('/Admin/OnlineUsers')}>
+            <ListItemButton onClick={() => navigate('/Admin/OnlineUsers')}>
               <ListItemIcon>
                 <PersonIcon />
               </ListItemIcon>
@@ -138,18 +136,34 @@ function Dashboard() {
             >
               <MenuIcon />
             </IconButton>
-          
             <Box sx={{ flexGrow: 1 }} />
             <IconButton color="inherit">
               <HomeIcon />
             </IconButton>
             <IconButton color="inherit">
-            <img src={image} alt="IMAGE" width="100" height="50"/>
+              <img src={image} alt="IMAGE" width="100" height="50" />
             </IconButton>
           </Toolbar>
         </AppBar>
         <DrawerHeader />
-        {/* Rest of your main content */}
+        {/* <div className="card-container"> */}
+          <div className="card">
+            <div className="card-inner">
+              <div className="card-front">
+                <h2>Total Users</h2>
+                <p>12</p>
+                <h2>Online Users</h2>
+                <p>10</p>
+              </div>
+              <div className="card-back">
+                <h2>Total Users</h2>
+                <p>12</p>
+                <h2>Online Users</h2>
+                <p>10</p>
+              </div>
+            </div>
+          </div>
+        {/* </div> */}
       </Main>
     </Box>
   );
