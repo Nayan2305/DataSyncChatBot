@@ -27,7 +27,7 @@ const Home = () => {
         </div>
       </div>
       <div className="buttons">
-        <button className="add-button">Add User</button>
+
         <button className="add-button" onClick={navigate('/AddMachine')}>Add Machine</button>
       </div>
     </div>

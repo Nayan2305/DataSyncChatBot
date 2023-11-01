@@ -1,12 +1,13 @@
-// AddMachine.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navbar } from '../Components/index.js';
+import "./AddMachine.css";
 
 const AddMachine = () => {
   const [selectedMachine, setSelectedMachine] = useState('');
   const [selectedRights, setSelectedRights] = useState([]);
   const [param1, setParam1] = useState('');
-  const [param2, setParam2] = useState('');
+  const [param2, setParam2] = useState(''); 
   const [param3, setParam3] = useState('');
   const [param4, setParam4] = useState('');
   const [param5, setParam5] = useState('');
@@ -15,7 +16,7 @@ const AddMachine = () => {
   const [param8, setParam8] = useState('');
   const [param9, setParam9] = useState('');
   const [param10, setParam10] = useState('');
-
+  
   const handleMachineChange = event => {
     setSelectedMachine(event.target.value);
   };
@@ -24,7 +25,7 @@ const AddMachine = () => {
     const value = event.target.value;
     setSelectedRights([...selectedRights, value]);
   };
-
+  
   const handleCheckboxChange = event => {
     const value = event.target.value;
     if (selectedRights.includes(value)) {
@@ -34,39 +35,28 @@ const AddMachine = () => {
     }
   };
 
+
   const handleSubmit = async event => {
     event.preventDefault();
 
-    const formData = {
-      type: selectedMachine,
-      rights: selectedRights,
-      parameters: {
-        param1,
-        param2,
-        param3,
-        param4,
-        param5,
-        param6,
-        param7,
-        param8,
-        param9,
-        param10,
-      },
-    };
+  //   const formData = {
+  //     machine: selectedMachine,
+  //     rights: selectedRights,
+  //     parameter1:
+  //   };
 
-    try {
-      const response = await axios.post('/api/add-machine', formData);
-      if (response.status === 200) {
-        console.log('Machine added successfully:', response.data);
-        // Reset form fields or show a success message
-      } else {
-        console.error('Error adding machine:', response.data);
-      }
-    } catch (error) {
-      console.error('Error adding machine:', error);
-    }
-  };
-
+  //   try {
+     
+  //     const response = await axios.post('/api/add-machine', formData);      
+  //     if (response.status === 200) {
+  //       console.log('Machine added successfully:', response.data);        
+  //     } else {
+  //       console.error('Error adding machine:', response.data);      
+  //     }
+  //   } catch (error) {
+  //     console.error('Error adding machine:', error);    
+  //   }
+   };
   return (
     <>
       <Navbar />
@@ -81,46 +71,7 @@ const AddMachine = () => {
             <option value="option3">Refrigerator</option>
           </select>
 
-          <div className="checkbox-container">
-            <label className="label">Select Rights:</label>
-            <div>
-              <input
-                type="checkbox"
-                id="item1"
-                name="item1"
-                className="checkbox-input"
-                value="Read"
-                checked={selectedRights.includes("Read")}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="item1">Read</label>
-            </div>
-            <div>
-            <input
-                type="checkbox"
-                id="item1"
-                name="item1"
-                className="checkbox-input"
-                value="Write"
-                checked={selectedRights.includes("Write")}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="item1">Write</label>
-            </div>
-            <div>
-            <input
-                type="checkbox"
-                id="item1"
-                name="item1"
-                className="checkbox-input"
-                value="Read and write"
-                checked={selectedRights.includes("Read and write")}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="item1">Read and write</label>
-            </div>
-          </div>
-
+          
           <label className="label">Enter the Parameters you need </label>
             <div className="input-grid">
                 <div className="input-row">
@@ -145,14 +96,14 @@ const AddMachine = () => {
                 </div>
               </div>
 
-          <button type="submit"  className="login-button">
+          <button type="submit" className="login-button">
             Add Machine
           </button>
         </form>
       </div>
     </div>
     </>
-  );
-};
+  )
+}
 
 export default AddMachine;
