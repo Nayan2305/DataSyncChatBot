@@ -57,29 +57,23 @@ def retrieve_collection_data(collection_name):
 
 @app.route('/create_collection/<user_id>', methods=['POST'])
 def create_collection(user_id):
-    # Check if the user with the provided user_id exists
-    user = db.user_profiles.find_one({'_id': ObjectId(user_id)})
-
-    if user is None:
-        abort(404, "User not found")
+    # Check if the collection with the provided user_id exists
+    if user_id in db.list_collection_names():
+        abort(400, "Collection already exists")
 
     # Get the collection name from the request
-    data = request.get_json()
-    collection_name = data.get('collection_name')
-
-    if not collection_name:
-        abort(400, "Collection name is required")
+    # data = request.get_json()
+    # if 'collection_name' not in data:
+    #     abort(400, "Collection name is required")
+    
+    # collection_name = data['collection_name']
 
     # Create the collection
-    if collection_name not in db.list_collection_names():
-        db.create_collection(collection_name)
+    db.create_collection(user_id)
 
-    # Store the collection name in the user's profile
-    user['collections'].append(collection_name)
-    db.user_profiles.update_one({'_id': ObjectId(user_id)}, {'$set': user})
+    # Return a success response
+    return jsonify({"message": "Collection created successfully"})
 
-    # Return the updated user profile
-    return jsonify(user)
 
 @app.route('/get_user_profile/<user_id>', methods=['GET'])
 def get_user_profile(user_id):
