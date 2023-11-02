@@ -15,7 +15,7 @@ app = Flask(__name__)
 mongo_uri = os.environ.get("MONGO_URI")
 client = MongoClient(mongo_uri)
 
-db = client.Music_System
+db = client.DataSyncChatBot
 
 
 def custom_encoder(obj):
