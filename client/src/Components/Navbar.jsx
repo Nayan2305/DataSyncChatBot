@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import image from "./image.jpeg";
 import { useNavigate } from "react-router-dom";
 import user from "./user.png";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JavaScript
 
 // Your other imports and code here...
 
