@@ -1,39 +1,46 @@
-import React from 'react'
-import {Navbar} from "../Components/index.js"
-import './Home.css'
+// Home.js
+
+import React from 'react';
+import { Navbar, Footer } from "../Components/index.js";
+import './Home.css'; // Import the CSS for the Home component
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const handleAddMachineClick = () => {
+    navigate('/AddMachine');
+  };
+  const handleAddUserClick = () => {
+    navigate('/AddUser');
+  };
+
   return (
     <>
       <Navbar />
-      <div className="card-container">
-      <div className="card">
-        <div className="card-inner">
-          <div className="card-front">
-            <h2>Total Users</h2>
-            <p>12</p>
-            <h2>Online Users</h2>
-            <p>10</p>
+      <div className="home-container"> 
+        <div className="grid-container">
+          <div className="home-container-item">
+            <div className="partition">
+              <img src="your_image_url1" alt="Image 1" />
+              <p>Click below to add a machine</p>
+            </div>
+            
+            <button className="add-button" onClick={handleAddMachineClick}>Add Machine</button>
           </div>
-          <div className="card-back">
-            <h2>Total Users</h2>
-            <p>12</p>
-            <h2>Online Users</h2>
-            <p>10</p>
+          <div className="home-container-item">
+            
+            <div className="partition">
+              <img src="your_image_url4" alt="Image 4" />
+              <p>Clike below to add a user</p>
+            </div>
+            <button className="add-button" onClick={handleAddUserClick}>Add User</button>
           </div>
         </div>
       </div>
-      <div className="buttons">
-        <button className="add-button">Add User</button>
-        <button className="add-button" onClick={navigate('/AddMachine')}>Add Machine</button>
-      </div>
-    </div>
+      <Footer />
     </>
   );
 }
 
 export default Home;
-

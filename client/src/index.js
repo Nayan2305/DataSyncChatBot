@@ -15,11 +15,11 @@ root.render(
     <Routes>
 
       <Route path="/Home" element={<Home />} />
-      <Route path="/AddUser" element={<AddUser />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Contact" element={<Contact />} />        
       <Route path="/Register" element={<Register />} />
       <Route path="/AddMachine" element={ <AddMachine/>} />
+      <Route path="/AddUser" element={ <AddUser/>} />
       <Route path="/PageNotFound" element={ <PageNotFound />} />
       <Route path="/Admin" element ={ <Dashboard />} />
       <Route path="/Admin/TotalUsers" element ={ <TotalUsers />} />

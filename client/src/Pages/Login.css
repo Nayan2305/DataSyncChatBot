@@ -1,86 +1,102 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: rgb(236, 236, 236);
-    border-radius: 20px;
-    font-family:  'Open Sans', 'Helvetica Neue', sans-serif, Geneva, Tahoma, sans-serif;
-  }
-  
-  .login-box {
-    background-color: rgb(255, 54, 54);
-    border: 1px solid #e6e6e6;
-    width: 500px;
-    text-align: center;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .instagram-logo {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2rem;
-    
-    margin-bottom: 20px;
-  }
-  
-  .input-field {
-    width: 93%;
-    padding: 10px;
-    margin: 10px auto; /* Center the input horizontally */
-   
-    border: 1px solid #dbdbdb;
-    border-radius: 3px;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #3897f0;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #2684f6;
-  }
-  
-  .separator {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-  }
-  
-  .or-text {
-    flex-grow: 1;
-    text-align: center;
-    color: #8e8e8e;
-    font-weight: bold;
-  }
-  .button-text {
-    text-align: center;
-    line-height: 1.2; /* Adjust line height for better spacing */
-  }
-  
-  .signup-button {
-    /* ...other styles... */
-    padding: 15px; /* Increase padding for better spacing */
-  }
-  
-  .signup-button {
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-    color: rgb(63, 52, 52);
-    border: none;
-    border-radius: 3px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .signup-button:hover {
-    background-color: #edf7ff;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(236, 236, 236);
+  border-radius: 20px;
+  font-family:  'Poppins', 'Helvetica Neue', sans-serif, Tahoma, sans-serif;
+}
+.login-box {
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  width: 350px;
+  text-align: center;
+  border: black solid;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+  width: 100%;
+  padding: 5px;
+  margin: 12px auto; 
+  border-radius: 20px;
+  border: 2px solid #dbdbdb;
+  border-radius: 3px;
+  height: 40px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3897f0;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #2684f6;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.or-text {
+  flex-grow: 1;
+  text-align: center;
+  color: #8e8e8e;
+  font-weight: bold;
+}
+.button-text {
+  text-align: center;
+  line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.signup-button {
+  padding: 15px; /* Increase padding for better spacing */
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  background-color: #edf7ff;
+}
+/* User Profile Table Styles */
+.user-profile-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px; /* Add some margin to separate from the user name */
+}
+
+.user-profile-table th {
+background-color: #f2f2f2; /* Gray background for table headers */
+text-align: left;
+padding: 8px;
+}
+
+.user-profile-table td {
+padding: 8px;
+border-bottom: 1px solid #ddd; /* Add a border between rows */
+}
+
+.user-profile-table tr:nth-child(even) {
+background-color: #f2f2f2; /* Gray background for even rows */
+}
+
+/* Add this class to the <table> element in your JSX */
+/* <table className="user-profile-table"> */

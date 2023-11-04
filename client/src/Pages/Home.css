@@ -1,87 +1,90 @@
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  height: 100%;
-  background-color: #f0f0f0; /* Background color for the page */
-}
+/* Home.css */
 
-.card {
-  width: 300px;
-  height: 450px;
-  background-color: rgba(0, 0, 255, 0.1); /* Bluish tinge */
-  border: 1px solid #ccc;
-  border-radius: 10px;
+/* Define specific styles for the Home component */
+.home-container {
+  display: flex;
+  justify-content: center;
   padding: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* Center horizontally */
 }
 
-.card-inner {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-  position: relative;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
+.home-container-item {
+  border: 1px solid #ccc;
+  padding: 20px; /* Increase the padding to make containers larger */
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  width: 300px; /* Increase the width of the containers as needed */
 }
 
-.card-back {
-  transform: rotateY(180deg);
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin: 10px 0;
-}
-
-p {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.buttons {
-  margin-top: 200px;
-  margin-bottom: 100px;
-  display: flex;
-  justify-content: center;
+.partition {
+  margin-top: 30px;
+  margin: 10px;
 }
 
 .add-button {
-  background-color: rgb(0, 60, 144);
+  background-color: #007bff;
   color: #fff;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin: 0 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-.add-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Navbar styles (if necessary) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255); /* White background */
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1); /* Optional: Add a shadow */
+}
+
+/* Logo, menu, and login button styles (if necessary) */
+.logo {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-menu li {
+    margin-right: 20px;
+}
+
+.navbar-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #333; /* Text color for menu items */
+    font-weight: 400;
+}
+
+.navbar-right .login-button {
+    background-color: rgb(0, 82, 195); /* Blue color for the button */
+    color: white;
+    border: none;
+    font-weight: 400;
+    border-radius: 18px;
+    padding: 10px 20px;
+    margin-top: 10px; /* Add margin to move it down */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navbar-right .login-button:hover {
+    background-color: rgb(0, 60, 144) /* Darker blue on hover */
 }
