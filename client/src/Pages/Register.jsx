@@ -18,6 +18,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+  const[machineId, setmachineId]=useState("");
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
@@ -113,7 +114,7 @@ const Register = () => {
                         onChange={setOtp}
                         OTPLength={6}
                         otpType="number"
-                        disabled={false}
+                        // disabled={false}
                         autoFocus
                         className="otp-container justify-content-center"
                         style={{
@@ -146,7 +147,7 @@ const Register = () => {
                   <input
                     className="input-field"
                     type="text"
-                    placeholder="Enter Your Name"
+                    placeholder="Enter Your telegram username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -162,6 +163,13 @@ const Register = () => {
                       fontSize: "16px",
                     }}
                   />
+                  <input
+            className="input-field"
+            type="text"
+            placeholder="Machine id"
+            value={machineId}
+            onChange={(e) => setmachineId(e.target.value)}
+          />
                   <input
                     className="input-field"
                     type="password"
