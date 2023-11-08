@@ -9,6 +9,11 @@ const motorSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  password:{
+    type: String,
+    required: true,
+    min:5,
+},
   motor_status: Boolean,
   fault_status: Boolean,
   ir: Number,

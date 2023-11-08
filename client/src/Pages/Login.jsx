@@ -1,18 +1,60 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import "./Login.css"; // Import your CSS file
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
-  
+  const location = useLocation();
   const [Phone,setPhone] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
+  const from = location.state?.from?.pathname || "/";
   
 
-  const handleLogin = () => {
+  const handleLogin = async(e) => {
     // Do something to login the user.
+    // console.log(e)
+    e.preventDefault();
+
+    try {
+      const data = {
+        mobile_number: Phone, // Assuming Phone is not null
+        password: password, // Assuming password is not null
+      };
+      const response = await axios.post(
+        "http://localhost:4000/api/login/",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 400) {
+        alert("User not Found");
+      } else if (response.status === 401) {
+        alert("Invalid Credentials");
+      } else {
+        const accessToken = response?.data?.token;
+        localStorage.setItem("token", JSON.stringify(accessToken));
+        localStorage.setItem("user", JSON.stringify(response?.data?.user));
+
+        // setauth({ accessToken });
+        // setrefreshToken(response?.data?.tokens?.refresh);
+        navigate(from, { replace: true });
+      }
+      // console.log(response.data.token);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSignup = () => {

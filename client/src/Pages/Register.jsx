@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import "./Login.css"; // Import your CSS file
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -8,7 +8,7 @@ import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { CgSpinner } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
   const [username1, setUsername1] = useState("");
@@ -22,21 +22,36 @@ const Register = () => {
   const [user, setUser] = useState(null);
   const[machineId, setmachineId]=useState("");
 
+  useEffect(()=>{
+    const auth = localStorage.getItem('user');
+    if(auth){
+      navigate('/')
+    }
+  },[])
+
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // console.log(email, first_name, last_name, password);
     try {
-      // await axios.post(
-      //   "http://localhost:4000/api/v1/auth/register",
-      //   JSON.stringify({ name, phone, password }),
-      //   {
-      //     headers: { "Content-Type": "application/json" },
-      //   }
-      // );
-        // console.log(response.data);
-        // console.log(response.accessToken);
-        // console.log(JSON.stringify(response));
-    } catch (err) {}
+      // Create an array of non-null usernames
+      const usernamesArray = [username1, username2, username3].filter(Boolean);
+  
+      // Prepare the data to send to your API
+      const data = {
+        usernames: usernamesArray,
+        mobile_number: Phone, // Assuming Phone is not null
+        motor_id: machineId,
+        password: password, // Assuming password is not null
+      };
+  
+      await axios.post(
+        "http://localhost:4000/api/create_user_profile",
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    } catch (err) {
+      // Handle any errors here
+    }
   };
 
   function onCaptchVerify() {

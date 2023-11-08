@@ -1,17 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import image from "./image.jpeg";
-import { useNavigate } from "react-router-dom";
+import {NavLink, useNavigate } from "react-router-dom";
 import user from "./user.png";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JavaScript
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JavaScript
 
 // Your other imports and code here...
 
-
 const Navbar = () => {
+  const auth = localStorage.getItem("user");
   const navigate = useNavigate();
-
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       <nav
@@ -63,27 +66,47 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-              <button
-              style={{ marginRight: "20px", marginLeft: "20px" , backgroundColor: "rgb(0, 82, 195)" , borderRadius:"25px" }}
-                type="button"
-                className="btn1 mx-1 btn-primary"
-                onClick={() => navigate("/login")}
-              >
-                Login/Signup
-              </button>
+                {auth ? (
+                  <NavLink
+                    onClick={logout}
+                    to="/"
+                    className="btn btn-outline-dark m-2  text-white"
+                  >
+                    <i className="fa fa-sign-out-alt mr-1  text-white"></i>{" "}
+                    Logout
+                  </NavLink>
+                ) : (
+                  <button
+                    style={{
+                      marginRight: "20px",
+                      marginLeft: "20px",
+                      backgroundColor: "rgb(0, 82, 195)",
+                      borderRadius: "25px",
+                    }}
+                    type="button"
+                    className="btn1 mx-1 btn-primary"
+                    onClick={() => navigate("/login")}
+                  >
+                    Login/Signup
+                  </button>
+                )}
               </li>
               <li>
-              <Link to="/User" className="mr-2">
-                {/* <img
+                <Link to="/User" className="mr-2">
+                  {/* <img
                   src={user}
                   className="user-icon"
                   alt="User"
                   style={{ width: "50px", height: "50px", marginLeft: "50px" }}
                 /> */}
-              </Link>
-              <a className="user-text" href="/user"  style={{ marginLeft : "30px"}}>
-                My Account
-              </a>
+                </Link>
+                <a
+                  className="user-text"
+                  href="/user"
+                  style={{ marginLeft: "30px" }}
+                >
+                  My Account
+                </a>
               </li>
             </ul>
 
