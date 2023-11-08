@@ -1,0 +1,13 @@
+import express from 'express';
+const router = express.Router();
+// const userController = require('../controllers/Motor.js');
+import {createUserProfile,getUserProfile, getMotorData,insertOrUpdateMotorData,changeMotorStatus,addUserToUserProfile} from '../controllers/Motor.js'
+// Create user profile
+router.post('/create_user_profile', createUserProfile);
+router.get('/get_user_profile/:username', getUserProfile);
+router.get('/user_data/:user_id', getMotorData);
+router.put('/insert_motor_data/:motor_id', insertOrUpdateMotorData);
+router.put('/change_motor_status/:user_id', changeMotorStatus);
+router.put('/add_user_id/:username', addUserToUserProfile);
+
+export default router
