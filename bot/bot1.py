@@ -29,7 +29,7 @@ while True:
                 username = update["message"]["from"].get("username", "N/A")
 
                 if message_text=="send":
-                    url = "http://127.0.0.1:5000/retrieve_collection_data/N_T_259"
+                    url = "http://localhost:4000/api/user_data/user_id"
 
                     # response = requests.get(f'http://127.0.0.1:5000/retrieve_collection_data/{username}')
                     headers = {'Content-Type': 'application/json'}
