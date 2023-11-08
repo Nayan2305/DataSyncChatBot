@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="home-container"> 
-        <div className="grid-container">
+        {/* <div className="grid-container">
           <div className="home-container-item">
             <div className="partition">
               <img src="your_image_url1" alt="Image 1" />
@@ -36,7 +36,7 @@ const Home = () => {
             </div>
             <button className="add-button" onClick={handleAddUserClick}>Add User</button>
           </div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>

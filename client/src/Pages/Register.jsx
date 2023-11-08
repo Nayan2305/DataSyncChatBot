@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [username1, setUsername1] = useState("");
+  const [username2, setUsername2] = useState("");
+  const [username3, setUsername3] = useState("");
   const [password, setPassword] = useState("");
   const [Phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
@@ -147,9 +149,24 @@ const Register = () => {
                   <input
                     className="input-field"
                     type="text"
-                    placeholder="Enter Your telegram username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter telegram username1"
+                    value={username1}
+                    onChange={(e) => setUsername1(e.target.value)}
+                    required="true"
+                  />
+                  <input
+                    className="input-field"
+                    type="text"
+                    placeholder="Enter telegram username2"
+                    value={username2}
+                    onChange={(e) => setUsername2(e.target.value)}
+                  />
+                  <input
+                    className="input-field"
+                    type="text"
+                    placeholder="Enter telegram username3"
+                    value={username3}
+                    onChange={(e) => setUsername3(e.target.value)}
                   />
                   <PhoneInput
                     country={"in"}
