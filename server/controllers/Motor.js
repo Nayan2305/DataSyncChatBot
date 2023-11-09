@@ -67,8 +67,8 @@ export const getUserProfile = async (req, res) => {
 // export default {createUserProfile,getUserProfile}
 export const getMotorData = async (req, res) => {
   try {
-    const user_id = req.params.user_id;
-    const user = await motorSchema.findOne({ user_id });
+    const username = req.params.username;
+    const user = await motorSchema.findOne({ usernames: { $in: [username] } });
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -126,11 +126,11 @@ export const insertOrUpdateMotorData = async (req, res) => {
 
 export const changeMotorStatus = async (req, res) => {
   try {
-    const { user_id } = req.params;
+    const { username } = req.params;
     const { motor_status } = req.body;
 
     // Find the user by user_id
-    const motor = await motorSchema.findOne({ user_id });
+    const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
 
     if (!motor) {
       return res.status(404).json({ error: "User not found" });
@@ -171,7 +171,7 @@ export const addUserToUserProfile = async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error",actualError: err.message });
   }
 };
 // module.exports = { getUserData };

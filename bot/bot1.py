@@ -28,17 +28,47 @@ while True:
                 message_text = update["message"]["text"]
                 username = update["message"]["from"].get("username", "N/A")
 
-                if message_text=="send":
-                    url = "http://localhost:4000/api/user_data/user_id"
+                if message_text=="/start":
+                    url = f"http://localhost:4000/api/add_user_id/{username}"
 
-                    # response = requests.get(f'http://127.0.0.1:5000/retrieve_collection_data/{username}')
+                    # Rest of your code
+                    payload = {
+                        "user_id": user_id
+                            # Add other payload parameters if needed
+                    }
                     headers = {'Content-Type': 'application/json'}
-
-                    response = requests.request("GET", url, headers=headers)
-
+                    response = requests.put(url, json=payload, headers=headers)
                     print(response.text)
 
-                print(username);    
+                elif message_text=="/checkstatus":
+                    url=f"http://localhost:4000/api/user_data/Suyog"
+                    headers = {'Content-Type': 'application/json'}
+                    response = requests.get(url, headers=headers)
+                    print("hi")
+                    print(response.text)
+                
+                elif message_text=="/turnonmachine":
+                
+                    url="http://localhost:4000/api/change_motor_status/Suyog"
+                    payload={
+                        "motor_status":1
+                    }
+                    headers = {'Content-Type': 'application/json'}
+                    response = requests.put(url,  json=payload,headers=headers)
+                    
+
+                elif message_text=="/turnoffmachine":
+                
+                    url="http://localhost:4000/api/change_motor_status/Suyog"
+                    payload={
+                        "motor_status":0
+                    }
+                    headers = {'Content-Type': 'application/json'}
+                    response = requests.put(url,  json=payload,headers=headers)
+                    print("hi")
+
+                # print(username);    
+                # print(user_id)
 
                 # Update the offset to avoid processing the same update again
                 offset = update["update_id"] + 1
