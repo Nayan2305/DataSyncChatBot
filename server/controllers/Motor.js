@@ -68,8 +68,9 @@ export const getUserProfile = async (req, res) => {
 export const getMotorData = async (req, res) => {
   try {
     const username = req.params.username;
+    console.log(username);
     const user = await motorSchema.findOne({ usernames: { $in: [username] } });
-
+    
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -128,16 +129,17 @@ export const changeMotorStatus = async (req, res) => {
   try {
     const { username } = req.params;
     const { motor_status } = req.body;
-
+    // console.log(username);
+    console.log(motor_status);
     // Find the user by user_id
     const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
 
     if (!motor) {
       return res.status(404).json({ error: "User not found" });
     }
-
+    
     motor.motor_status = motor_status;
-    await user.motor.save();
+    await motor.save();
 
     res.json({ message: "Motor status updated successfully" });
   } catch (err) {
@@ -152,7 +154,7 @@ export const addUserToUserProfile = async (req, res) => {
     const { user_id } = req.body;
 
     // Find the user by username
-    let user = await motorSchema.findOne({ usernames: username });
+    const user = await motorSchema.findOne({ usernames: { $in: [username] } });
 
     if (!user.user_id) {
       // If not, initialize it as an empty array
