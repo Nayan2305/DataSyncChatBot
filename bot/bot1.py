@@ -52,7 +52,7 @@ while True:
                     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
                     payload = {
                         'chat_id': user_id,
-                        'text': data.text.motor_status,
+                        'text': data.text,
                     }
                     response = requests.post(url, json=payload)
                     
@@ -66,6 +66,12 @@ while True:
                     }
                     headers = {'Content-Type': 'application/json'}
                     response = requests.put(url,  json=payload,headers=headers)
+                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                    payload = {
+                        'chat_id': user_id,
+                        'text': "Motor turned on",
+                    }
+                    response = requests.post(url, json=payload)
                     
 
                 elif message_text=="/turnoffmachine":
@@ -76,7 +82,12 @@ while True:
                     }
                     headers = {'Content-Type': 'application/json'}
                     response = requests.put(url,  json=payload,headers=headers)
-                    print("hi")
+                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                    payload = {
+                        'chat_id': user_id,
+                        'text': "Motor turned off",
+                    }
+                    response = requests.post(url, json=payload)
 
                 # print(username);    
                 # print(user_id)
