@@ -1,4 +1,5 @@
 import requests
+import json
 
 # Replace with your actual bot token
 bot_token = "6140888607:AAElQv1wgxZVUh7VWNNNLw9Nh6Shid_hhcw"
@@ -42,14 +43,24 @@ while True:
 
                 elif message_text=="/checkstatus":
                     url=f"http://localhost:4000/api/user_data/Suyog"
+
                     headers = {'Content-Type': 'application/json'}
-                    response = requests.get(url, headers=headers)
-                    print("hi")
-                    print(response.text)
+                    data = requests.get(url, headers=headers)
+                    # formatted_message = json.dumps(data.text, indent=2)
+                    
+
+                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                    payload = {
+                        'chat_id': user_id,
+                        'text': data.text.motor_status,
+                    }
+                    response = requests.post(url, json=payload)
+                    
+                 
                 
                 elif message_text=="/turnonmachine":
                 
-                    url="http://localhost:4000/api/change_motor_status/Suyog"
+                    url=f"http://localhost:4000/api/change_motor_status/{username}"
                     payload={
                         "motor_status":1
                     }
@@ -59,7 +70,7 @@ while True:
 
                 elif message_text=="/turnoffmachine":
                 
-                    url="http://localhost:4000/api/change_motor_status/Suyog"
+                    url=f"http://localhost:4000/api/change_motor_status/{username}"
                     payload={
                         "motor_status":0
                     }
