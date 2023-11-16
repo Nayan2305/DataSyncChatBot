@@ -42,7 +42,7 @@ while True:
                     print(response.text)
 
                 elif message_text=="/checkstatus":
-                    url=f"http://localhost:4000/api/user_data/Suyog"
+                    url=f"http://localhost:4000/api/user_data/{username}"
 
                     headers = {'Content-Type': 'application/json'}
                     data = requests.get(url, headers=headers)
