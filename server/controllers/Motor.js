@@ -1,6 +1,8 @@
 import motorSchema from "../models/Motor.js";
 import bcrypt from "bcrypt";
+// import ObjectId from "mongodb";
 import jwt from "jsonwebtoken";
+// import mongoose from "mongoose";
 
 export const createUserProfile = async (req, res) => {
   try {
@@ -177,3 +179,77 @@ export const addUserToUserProfile = async (req, res) => {
   }
 };
 // module.exports = { getUserData };
+
+
+
+
+export const getMotorById = async (req, res) => {
+  const { motorId } = req.params;
+
+  try {
+    const motor = await motorSchema.findOne({ motor_id: motorId });
+
+    if (!motor) {
+      return res.status(404).json({ message: 'Motor not found' });
+    }
+
+    return res.status(200).json(motor);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const getMotorByMobileNumber = async (req, res) => {
+  const { mobileNumber } = req.params;
+
+  try {
+    const motor = await motorSchema.findOne({ mobile_number: mobileNumber });
+
+    if (!motor) {
+      return res.status(404).json({ message: 'Motor not found' });
+    }
+
+    return res.status(200).json(motor);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+
+export const getAllMotorData = async (req, res) => {
+  try {
+    const motors = await motorSchema.find();
+    
+    return res.status(200).json(motors);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+export const getDataForUser = async (req, res) => {
+  const Id = req.params.Id; // Assuming the user's _id is passed as a string parameter
+  
+  console.log(Id)
+  try {
+    // const objectId = ObjectId(Id);
+    // const objectId = mongoose.Types.ObjectId(Id);
+
+     // Convert the string to ObjectId
+    //  console.log(objectId)
+    const motorData = await motorSchema.findOne({ _id: Id });
+    // const motorData = await motorSchema.findById(ObjectId(Id)).exec();
+
+    if (!motorData) {
+      return res.status(404).json({ message: 'No data found for the user' });
+    }
+
+    return res.status(200).json(motorData);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
