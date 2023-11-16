@@ -21,7 +21,8 @@ const motorSchema = new mongoose.Schema({
   vr: Number,
   vx: Number,
   vy: Number,
-  timestamp: Date
+}, {
+  timestamps: true, // This option adds createdAt and updatedAt fields
 });
 
 const MotorData = mongoose.model('Motor', motorSchema);
