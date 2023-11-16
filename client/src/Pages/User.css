@@ -1,0 +1,68 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .user-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .user-profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-color: black;
+    border-width: 3px;
+  }
+  
+  .entry-label {
+    font-weight: bold;
+    padding: 8px;
+  }
+  
+  .entry-value {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .edit-button,
+  .save-button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .save-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+  }
+  
+  .save-button:hover,
+  .edit-button:hover {
+    opacity: 0.8;
+  }
+  
+  

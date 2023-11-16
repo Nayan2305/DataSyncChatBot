@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom/client";
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home,AddMachine,AddUser,Login,Register, PageNotFound, Contact } from "./Pages";
+import { Home,ViewMachine,AddUser,Login,Register, PageNotFound, Contact, User } from "./Pages";
 import {TotalMachines,TotalUsers,OnlinelUsers,OnlinelMachines} from "./Pages/Admin/index.js";
 import { Dashboard } from './Pages/Admin';
 import { Provider } from "react-redux";
@@ -18,8 +18,9 @@ root.render(
       <Route path="/Login" element={<Login />} />
       <Route path="/Contact" element={<Contact />} />        
       <Route path="/Register" element={<Register />} />
-      <Route path="/AddMachine" element={ <AddMachine/>} />
+      <Route path="/ViewMachines" element={ <ViewMachine/>} />
       <Route path="/AddUser" element={ <AddUser/>} />
+      <Route path="/user" element={ <User/>} />
       <Route path="/PageNotFound" element={ <PageNotFound />} />
       <Route path="/Admin" element ={ <Dashboard />} />
       <Route path="/Admin/TotalUsers" element ={ <TotalUsers />} />

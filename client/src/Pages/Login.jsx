@@ -92,14 +92,14 @@ const Login = () => {
             Log in
           </button>
         </form>
-        <div className="separator">
+        {/* <div className="separator">
           <span className="or-text">OR</span>
-        </div>
-        <button className="signup-button" onClick={handleSignup}>
+        </div> */}
+        {/* <button className="signup-button" onClick={handleSignup}>
           <div className="button-text">
             New Here? <br /> Click Here to Register
           </div>
-        </button>
+        </button> */}
       </div>
 
     </div>

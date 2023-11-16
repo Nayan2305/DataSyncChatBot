@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleAddMachineClick = () => {
-    navigate('/AddMachine');
+    navigate('/ViewMachines');
   };
   const handleAddUserClick = () => {
     navigate('/AddUser');
@@ -19,14 +19,14 @@ const Home = () => {
     <>
       <Navbar />
       <div className="home-container"> 
-        {/* <div className="grid-container">
+        <div className="grid-container">
           <div className="home-container-item">
             <div className="partition">
               <img src="your_image_url1" alt="Image 1" />
               <p>Click below to add a machine</p>
             </div>
             
-            <button className="add-button" onClick={handleAddMachineClick}>Add Machine</button>
+            <button className="add-button" onClick={handleAddMachineClick}>View Machines</button>
           </div>
           <div className="home-container-item">
             
@@ -36,7 +36,7 @@ const Home = () => {
             </div>
             <button className="add-button" onClick={handleAddUserClick}>Add User</button>
           </div>
-        </div> */}
+        </div>
       </div>
       <Footer />
     </>
