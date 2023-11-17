@@ -1,81 +1,108 @@
-import React, { useState } from 'react';
-import "./ViewMachine.css"
-
-const data = [
-  { id: 1, name: 'John Doe', location: 'New York' },
-  { id: 2, name: 'Jane Doe', location: 'Los Angeles' },
-  { id: 3, name: 'Bob Smith', location: 'Chicago' },
-  
-];
+import React, { useState, useEffect } from 'react';
+import './ViewMachine.css';
+import axios from 'axios';
 
 const SearchPage = () => {
-  const [searchName, setSearchName] = useState('');
-  const [searchLocation, setSearchLocation] = useState('');
-  const [filteredData, setFilteredData] = useState(data);
+  const [motorId, setMotorId] = useState('');
+  const [searchPhone, setSearchPhone] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
-  const handleSearch = () => {
-    const filteredByName = data.filter(item =>
-      item.name.toLowerCase().includes(searchName.toLowerCase())
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/motor/');
+        setFilteredData(response.data);
+      } catch (err) {
+        console.log(err);
+        // Handle errors appropriately (e.g., show an error message)
+      }
+    };
 
-    const filteredByLocation = data.filter(item =>
-      item.location.toLowerCase().includes(searchLocation.toLowerCase())
-    );
+    fetchData();
+  }, []);
 
-    // Combine both filters
-    const result = filteredByName.filter(item =>
-      filteredByLocation.includes(item)
-    );
+  const searchPhoneData = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/motor/mobile/${searchPhone}`
+      );
+      setFilteredData(response.data);
+    } catch (err) {
+      console.log(err);
+      // Handle errors appropriately (e.g., show an error message)
+    }
+  };
 
-    setFilteredData(result);
+  const searchMotor = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/motor/${motorId}`
+      );
+      setFilteredData(response.data);
+    } catch (err) {
+      console.log(err);
+      // Handle errors appropriately (e.g., show an error message)
+    }
   };
 
   return (
-    <>
     <div className="container">
       <h1>Data Search Page</h1>
 
-      <div>
-        <label>Name: </label>
-        <input
+      <div className="search-input">
+        <label>Phone: </label>
+        <input 
+        className='inp'
           type="text"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
+          value={searchPhone}
+          onChange={(e) => setSearchPhone(e.target.value)}
         />
       </div>
+      <button className="btn btn-primary" onClick={searchPhoneData}>
+        Search
+      </button>
 
-      <div>
-        <label>Location: </label>
+      <div className="search-input">
+        <label>Machine id: </label>
         <input
           type="text"
-          value={searchLocation}
-          onChange={(e) => setSearchLocation(e.target.value)}
+          value={motorId}
+          onChange={(e) => setMotorId(e.target.value)}
         />
       </div>
+      <button className="btn btn-primary" onClick={searchMotor}>
+        Search
+      </button>
 
-      <button onClick={handleSearch}>Search</button>
-      </div>
-      <h2>Filtered Data</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map(item => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.location}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-  
-    </>
+      {filteredData.length > 0 && (
+        <>
+          <h2>Filtered Data</h2>
+
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.mobile_number}</td>
+                  <td>{item.motor_id}</td>
+                  <td>{item.fault_status}</td>
+                  <td>{item.motor_status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+    </div>
   );
 };
 

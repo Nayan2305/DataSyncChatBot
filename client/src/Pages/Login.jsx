@@ -51,6 +51,7 @@ const Login = () => {
         // setrefreshToken(response?.data?.tokens?.refresh);
         navigate(from, { replace: true });
       }
+      navigate("/Home");
       // console.log(response.data.token);
     } catch (err) {
       console.log(err);

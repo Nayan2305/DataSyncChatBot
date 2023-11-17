@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import image from "./image.jpeg";
-import {NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+// import './navbar.css';
 import user from "./user.png";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JavaScript
-
-// Your other imports and code here...
 
 const Navbar = () => {
   const auth = localStorage.getItem("user");
@@ -19,7 +18,7 @@ const Navbar = () => {
     <>
       <nav
         className="navbar navbar-expand-lg navbar-light bg-light"
-        style={{ backgroundColor: "rgb(0, 82, 195)" }}
+        style={{ width: "100%" }}
       >
         <div className="container py-2">
           <Link to="/Home">
@@ -53,14 +52,6 @@ const Navbar = () => {
                 className="nav-item"
                 style={{ marginRight: "20px", marginLeft: "20px" }}
               >
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-              </li>
-              <li
-                className="nav-item"
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              >
                 <Link className="nav-link" to="/Contact">
                   Contact Us
                 </Link>
@@ -69,10 +60,11 @@ const Navbar = () => {
                 {auth ? (
                   <NavLink
                     onClick={logout}
-                    to="/"
-                    className="btn btn-outline-dark m-2  text-white"
+                    to="/Home"
+                    className="btn btn-outline-dark m-2 text-white"
+                    style={{ backgroundColor: "blue", color: "white" }}
                   >
-                    <i className="fa fa-sign-out-alt mr-1  text-white"></i>{" "}
+                    <i className="fa fa-sign-out-alt mr-1 text-white"></i>{" "}
                     Logout
                   </NavLink>
                 ) : (
@@ -80,8 +72,10 @@ const Navbar = () => {
                     style={{
                       marginRight: "20px",
                       marginLeft: "20px",
-                      backgroundColor: "rgb(0, 82, 195)",
+                      color: "white",
+                      backgroundColor: "blue",
                       borderRadius: "25px",
+                      transition: "background-color 0.3s", // Add a smooth transition effect
                     }}
                     type="button"
                     className="btn1 mx-1 btn-primary"
