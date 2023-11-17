@@ -6,7 +6,7 @@ const SearchPage = () => {
   const [motorId, setMotorId] = useState('');
   const [searchPhone, setSearchPhone] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -56,6 +56,7 @@ const SearchPage = () => {
         <input 
         className='inp'
           type="text"
+          placeholder='98765432201'
           value={searchPhone}
           onChange={(e) => setSearchPhone(e.target.value)}
         />
@@ -76,17 +77,17 @@ const SearchPage = () => {
         Search
       </button>
 
-      {filteredData.length > 0 && (
+      {filteredData.length >= 0 && (
         <>
           <h2>Filtered Data</h2>
 
           <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Location</th>
-                <th scope="col">Location</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Motor Id</th>
+                <th scope="col">Fault Status</th>
+                <th scope="col">Motor Status</th>
               </tr>
             </thead>
             <tbody>

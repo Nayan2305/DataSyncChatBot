@@ -1,3 +1,4 @@
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -6,14 +7,6 @@
 h1 {
   text-align: center;
   color: #333;
-}
-
-.search-input {
-  border: #333;
-  margin-bottom: 15px;
-}
-.inp{
-  border: #000000;
 }
 
 label {
@@ -26,10 +19,12 @@ label {
   width: 30%;
   height: auto;
   margin: 20px;
-  padding: 5px; /* Adjust the padding to change the input size */
+  padding: 8px;
   box-sizing: border-box;
-  border: #000000;
+  border: 2px solid var(black);
   margin-bottom: 10px;
+  resize: none;
+  color: var(--color-white);
 }
 
 button {

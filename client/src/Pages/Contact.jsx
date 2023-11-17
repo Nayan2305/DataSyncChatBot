@@ -4,11 +4,12 @@ import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 import { Navbar } from '../Components';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const Contact = () => {
     const navigate = useNavigate();
     const form = useRef();
-  
+    const notify = () => alert("message sent successfully");
     const sendEmail = (e) => {
       e.preventDefault();
   
@@ -44,10 +45,9 @@ export const Contact = () => {
   //     emailjs.sendForm('service_i91ddvo', 'template_exc5hwq', form.current, '36R9LlocDtQpuAEpE')
   //     e.target.reset();
   //   };
-  const handleclick = () => {
-    // Do something to signup the user.
-    navigate("/Home")
-  };
+  const handleClick = () =>{
+    navigate('/Home');
+  }
     return (
       <section id='contact'>
         <div className="borderr" >
@@ -61,8 +61,8 @@ export const Contact = () => {
             <input type="email" name="email" placeholder='Your Email Id' />
             <textarea type="text" rows='7' name='message' placeholder='Your Message' ></textarea>
             <div className="button-container">
-        <button type='submit' className='butn' id='home-button' to='/Home' >Send</button>
-        <button className='butn' id='return-home'onClick={handleclick} >Home</button>
+        <button type='submit' className='butn' id='home-button' onClick={notify} to='/Home' >Send</button>
+        <button className='butn' id='return-home' to='/Home' onClick={handleClick}  >Home</button>
     </div>
 
 
