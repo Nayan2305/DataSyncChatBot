@@ -76,6 +76,27 @@ const SearchPage = () => {
     }
   };
 
+  const getalldata = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/get-all-motorData/all`
+      );
+      if (Array.isArray(response.data)) {
+        setFilteredData(response.data);
+      } else if (typeof response.data === "object") {
+        // If the response is an object, convert it to an array
+        setFilteredData([response.data]);
+      } else {
+        console.error("Unexpected data format:", response.data);
+        // Handle the error appropriately (e.g., show an error message)
+      }
+    } catch (err) {
+      console.log("Search motor error:", err);
+      // Handle errors appropriately (e.g., show an error message)
+    }
+  };
+
   return (
     <div className="container">
       <h1>Data Search Page</h1>
@@ -104,6 +125,10 @@ const SearchPage = () => {
       </div>
       <button className="btn btn-primary" onClick={searchMotor}>
         Search
+      </button>
+
+      <button className="btn btn-primary" onClick={getalldata} >
+        Fetch all details
       </button>
 
       {/* Data is fetched and set to the filteredData state inside useEffect */}

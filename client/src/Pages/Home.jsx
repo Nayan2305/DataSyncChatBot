@@ -22,7 +22,7 @@ const Home = () => {
         <div className="grid-container">
           <div className="home-container-item">
             <div className="partition">
-              <img src="your_image_url1" alt="Image 1" />
+              <img src="image1.jpeg" alt="Image 1" />
               <p>Click below to add a machine</p>
             </div>
             
@@ -31,7 +31,7 @@ const Home = () => {
           <div className="home-container-item">
             
             <div className="partition">
-              <img src="your_image_url4" alt="Image 4" />
+              <img src="" alt="Image 4" />
               <p>Clike below to add a user</p>
             </div>
             <button className="add-button" onClick={handleAddUserClick}>Add User</button>
