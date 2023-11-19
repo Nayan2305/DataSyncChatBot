@@ -17,7 +17,7 @@ const AddUser = () => {
   useEffect(() => {
     const auth = localStorage.getItem("user");
     if (auth) {
-      navigate("/");
+      
     }
   }, []);
 

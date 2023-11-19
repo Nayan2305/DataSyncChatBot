@@ -1,33 +1,94 @@
 /* Home.css */
+.body{
+  background-color:#2f66b3;
+}
+h1{
+  font-size : 60px;
+}
+h2{
+  font-size: 30px;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; /* Adjust the height as needed */
+}
+.newcontainer {
+  display: flex;
+  /* Stack items vertically on smaller screens */
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container,
+.text-container {
+  width: 100%; /* Take up full width on smaller screens */
+  text-align: center; /* Center the text horizontally */
+}
+
+.image-container img {
+  max-width: 100%; /* Ensure the image doesn't overflow its container */
+}
+
+.title1 .title2{
+  text-align: left;
+}
+
+p{
+  font-size: large;
+}
+.text-container {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 0 10px; /* Adjust the padding as needed */
+  margin-right: 100px;
+  text-align: left;
+}
+
 
 /* Define specific styles for the Home component */
 .home-container {
   display: flex;
   justify-content: center;
   padding: 20px;
+  margin-top: 80px;
+  
 }
-
+.container{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 20px;
 }
+.card{
+  align-items: center;
 
+}
+.card-body{
+  text-align: center;
+}
 .home-container-item {
   border: 1px solid #ccc;
-  padding: 20px; /* Increase the padding to make containers larger */
+  padding: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px; /* Increase the width of the containers as needed */
+  width: 300px;
 }
 
 .partition {
   margin-top: 30px;
   margin: 10px;
 }
-
+.rounded{
+  margin-top: 20px;
+  width: 30%;
+  height: auto; 
+}
 .add-button {
   background-color: #007bff;
   color: #fff;
@@ -36,55 +97,84 @@
   cursor: pointer;
 }
 
-/* Navbar styles (if necessary) */
+/* Additional Styles for Responsive Navbar (you can customize as needed) */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(255, 255, 255); /* White background */
-    padding: 10px 20px;
-    box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1); /* Optional: Add a shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1);
 }
 
-/* Logo, menu, and login button styles (if necessary) */
 .logo {
-    font-size: 1.2rem;
-    font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .navbar-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .navbar-menu li {
-    margin-right: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 
 .navbar-menu li:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .navbar-menu a {
-    text-decoration: none;
-    color: #333; /* Text color for menu items */
-    font-weight: 400;
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
 }
 
 .navbar-right .login-button {
-    background-color: rgb(0, 82, 195); /* Blue color for the button */
-    color: white;
-    border: none;
-    font-weight: 400;
-    border-radius: 18px;
-    padding: 10px 20px;
-    margin-top: 10px; /* Add margin to move it down */
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: rgb(0, 82, 195);
+  color: white;
+  border: none;
+  font-weight: 400;
+  border-radius: 18px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .navbar-right .login-button:hover {
-    background-color: rgb(0, 60, 144) /* Darker blue on hover */
+  background-color: rgb(0, 60, 144);
 }
+@media (min-width: 768px) {
+  .newcontainer {
+    /* Side by side on larger screens */
+    flex-direction: row;
+  }
+
+  .image-container,
+  .text-container {
+    width: 50%; /* Take up half the width on larger screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column; /* Change to a column layout for small screens */
+    align-items: center; /* Center items in the column */
+  }
+
+  .grid-container {
+    flex-direction: column; /* Change to a column layout for small screens */
+    gap: 10px; /* Adjust the gap as needed */
+  }
+
+  .home-container-item {
+    width: 100%; /* Take up the full width on small screens */
+  }
+}
+/* Additional styles for footer (you can customize as needed) */

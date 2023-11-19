@@ -1,17 +1,18 @@
 /* Navbar styles */
 .navbar {
+  font-size: x-large;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: rgb(255, 255, 255); /* White background */
   padding: 10px 20px;
   box-shadow: 0px 2px 5px rgba(22, 41, 219, 0.1); /* Optional: Add a shadow */
-
 }
-
-/* Logo on the left */
+.nav-link{
+  font-size:x-large;
+}
 .logo {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
@@ -35,6 +36,7 @@
   text-decoration: none;
   color: #333; /* Text color for menu items */
   font-weight: 400;
+
 }
 
 /* Login button on the right */

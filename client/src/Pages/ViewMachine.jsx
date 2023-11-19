@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ViewMachine.css";
 import axios from "axios";
+import { Navbar, Footer } from "../Components";
 
 const SearchPage = () => {
   const [motorId, setMotorId] = useState("");
@@ -98,68 +99,76 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Data Search Page</h1>
+    <>
+      <Navbar />
+      <div className="search-container">
+        <h2 >Search Users</h2>
 
-      <div className="search-input">
-        <label>Phone: </label>
-        <input
-          className="inp"
-          type="text"
-          placeholder="98765432201"
-          value={searchPhone}
-          onChange={(e) => setSearchPhone(e.target.value)}
-        />
-      </div>
-      <button className="btn btn-primary" onClick={searchPhoneData}>
-        Search
-      </button>
+        <div className="search-container">
+          <div className="search-input">
+            <label>Phone: </label>
+            <input
+              className="inp"
+              type="text"
+              placeholder="98765432201"
+              value={searchPhone}
+              onChange={(e) => setSearchPhone(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary" onClick={searchPhoneData}>
+            Search
+          </button>
+        </div>
 
-      <div className="search-input">
-        <label>Machine id: </label>
-        <input
-          type="text"
-          value={motorId}
-          onChange={(e) => setMotorId(e.target.value)}
-        />
-      </div>
-      <button className="btn btn-primary" onClick={searchMotor}>
-        Search
-      </button>
+        <div className="search-container">
+          <div className="search-input">
+            <label>Machine id: </label>
+            <input
+              type="text"
+              value={motorId}
+              onChange={(e) => setMotorId(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary" onClick={searchMotor}>
+            Search
+          </button>
+        </div>
 
-      <button className="btn btn-primary" onClick={getalldata} >
-        Fetch all details
-      </button>
+        <div className="fetch-container">
+          <button className="btn btn-primary fetchall" onClick={getalldata}>
+            Fetch all details
+          </button>
+        </div>
+        <h2>Filtered Data</h2>
 
-      {/* Data is fetched and set to the filteredData state inside useEffect */}
-
-      <h2>Filtered Data</h2>
-
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Mobile Number</th>
-            <th scope="col">Motor Id</th>
-            <th scope="col">Fault Status</th>
-            <th scope="col">Motor Status</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item._id}>
-              <td>{item.mobile_number}</td>
-              <td>{item.motor_id}</td>
-              <td>{item.fault_status ? "Faulty" : "Not Faulty"}</td>
-              <td>{item.motor_status ? "Running" : "Stopped"}</td>
-              {/* Additional user details */}
-              <td>{item.usernames.join(", ")}</td>
-              {/* Add more fields based on your data structure */}
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Mobile Number</th>
+              <th scope="col">Motor Id</th>
+              <th scope="col">Fault Status</th>
+              <th scope="col">Motor Status</th>
+              <th scope="col">Username</th>
+              <th scope="col">Time Created </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item._id}>
+                <td>{item.mobile_number}</td>
+                <td>{item.motor_id}</td>
+                <td>{item.fault_status ? "Faulty" : "Not Faulty"}</td>
+                <td>{item.motor_status ? "Running" : "Stopped"}</td>
+                {/* Additional user details */}
+                <td>{item.usernames.join(", ")}</td>
+                <td>{new Date(item.createdAt).toLocaleString()}</td>
+                {/* Add more fields based on your data structure */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react'
 import './contact.css'
 import { useRef } from 'react';
 import emailjs from 'emailjs-com'
-import { Navbar } from '../Components';
+import { Navbar ,Footer} from '../Components';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -49,7 +49,9 @@ export const Contact = () => {
     navigate('/Home');
   }
     return (
+      
       <section id='contact'>
+        <Navbar/>
         <div className="borderr" >
         <h2 className='title'>Contact Us</h2>
         <div className="container contact__container">
