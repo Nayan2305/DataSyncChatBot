@@ -23,23 +23,30 @@ const AddUser = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  function generatePassword(length) {
-    const charset =
-      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
-    let password = "";
-
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset.charAt(randomIndex);
-    }
-
-    return password;
-  }
+    const generatePassword = () => {
+      // Password generation logic (you can customize this)
+      const length = 6;
+      const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
+  
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset.charAt(randomIndex);
+      }
+  
+      return password;
+    };
+  
+    // const handleButtonClick = () => {
+     
+    //   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const password = generatePassword(6);
+    const password = generatePassword();
+    alert(`Your random password is: ${password}`);
+
     console.log(password);
     try {
       const usernamesArray = [username1, username2, username3].filter(Boolean);
@@ -63,6 +70,7 @@ const AddUser = () => {
       console.log("Password Created Successfully:", password);
 
       navigate("/");
+
     } catch (err) {
       console.error("Error creating user profile:", err);
       // Handle any errors here
@@ -75,6 +83,7 @@ const AddUser = () => {
         <h2 className="instagram-logo">Add User</h2>
         <form>
           <input
+          required
             className="input-field"
             type="text"
             placeholder="Telegram Username 1"
@@ -88,6 +97,7 @@ const AddUser = () => {
             value={username2}
             onChange={(e) => setUsername2(e.target.value)}
           />
+          
           <input
             className="input-field"
             type="text"
@@ -100,6 +110,7 @@ const AddUser = () => {
             value={Phone}
             onChange={setPhone}
             autoComplete="false"
+            required
             inputStyle={{
               width: "300px",
               height: "45px",
@@ -109,6 +120,7 @@ const AddUser = () => {
           <input
             className="input-field"
             type="text"
+            required
             placeholder="Motor Id"
             value={machineId}
             onChange={(e) => setmachineId(e.target.value)}

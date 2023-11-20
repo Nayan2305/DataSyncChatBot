@@ -16,7 +16,7 @@ import {
 
 // Create user profile
 router.post('/create_user_profile', createUserProfile);
-router.get('/get_user_profile/:username', getUserProfile);
+router.get('/get_user_profile/:token', getUserProfile);
 router.get('/user_data/:username', getMotorData);
 router.put('/insert_motor_data/:motor_id', insertOrUpdateMotorData);
 router.put('/change_motor_status/:username', changeMotorStatus);

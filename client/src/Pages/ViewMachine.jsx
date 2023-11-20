@@ -32,6 +32,7 @@ const SearchPage = () => {
 
   const searchPhoneData = async (e) => {
     e.preventDefault();
+    console.log(searchPhone);
     try {
       const response = await axios.get(
         `http://localhost:4000/api/motor/mobile/${searchPhone}`
@@ -53,6 +54,7 @@ const SearchPage = () => {
       // Handle errors appropriately (e.g., show an error message)
     }
   };
+
   const searchMotor = async (e) => {
     e.preventDefault();
     try {

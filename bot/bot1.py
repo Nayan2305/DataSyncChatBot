@@ -42,17 +42,18 @@ while True:
                     print(response.text)
 
                 elif message_text=="/checkstatus":
-                    url=f"http://localhost:4000/api/user_data/{username}"
+                    url = f"http://localhost:4000/api/user_data/{username}"
 
                     headers = {'Content-Type': 'application/json'}
-                    data = requests.get(url, headers=headers)
-                    # formatted_message = json.dumps(data.text, indent=2)
-                    
+                    data = requests.get(url, headers=headers).json()  # Parse the JSON response
+
+                    # Format the JSON data with indentation
+                    formatted_message = json.dumps(data, indent=5)
 
                     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
                     payload = {
                         'chat_id': user_id,
-                        'text': data.text,
+                        'text': formatted_message,  # Send the formatted JSON as the message text
                     }
                     response = requests.post(url, json=payload)
                     
@@ -88,6 +89,19 @@ while True:
                         'text': "Motor turned off",
                     }
                     response = requests.post(url, json=payload)
+                
+                else:
+                
+                    
+                
+                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                    payload = {
+                        'chat_id': user_id,
+                        'text': "Enter a valid Command please check the menu for the set of commands",
+                    }
+                    response = requests.post(url, json=payload)
+
+
 
                 # print(username);    
                 # print(user_id)

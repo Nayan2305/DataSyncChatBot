@@ -15,10 +15,8 @@ h2{
   height: 70vh; /* Adjust the height as needed */
 }
 .newcontainer {
-  display: flex;
-  /* Stack items vertically on smaller screens */
-  flex-direction: column;
-  align-items: center;
+   display: flex;
+   margin-top: auto;
 }
 
 .image-container,
@@ -28,21 +26,27 @@ h2{
 }
 
 .image-container img {
-  max-width: 100%; /* Ensure the image doesn't overflow its container */
+  max-width: 70%;
+   /* Ensure the image doesn't overflow its container */
 }
 
-.title1 .title2{
+
+.title1{
+  margin-top: 70px;
   text-align: left;
 }
-
+.title2{
+  text-align: left;
+}
 p{
   font-size: large;
+  text-align: left;
 }
 .text-container {
+  flex: 1;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  padding: 0 10px; /* Adjust the padding as needed */
-  margin-right: 100px;
-  text-align: left;
+  padding: 0 20px; /* Adjust the padding as needed */
+
 }
 
 
@@ -153,12 +157,14 @@ p{
 @media (min-width: 768px) {
   .newcontainer {
     /* Side by side on larger screens */
-    flex-direction: row;
+    flex-direction: flex;
   }
 
   .image-container,
   .text-container {
-    width: 50%; /* Take up half the width on larger screens */
+    flex: 1; /* Take up half the width on larger screens */
+    margin: 20px;
+    
   }
 }
 

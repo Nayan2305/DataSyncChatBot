@@ -44,7 +44,7 @@ const Navbar = () => {
                 className="nav-item"
                 style={{ marginRight: "20px", marginLeft: "20px" }}
               >
-                <Link className="nav-link" to="/Home">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>
               </li>
@@ -60,7 +60,7 @@ const Navbar = () => {
                 {auth ? (
                   <NavLink
                     onClick={logout}
-                    to="/Home"
+                    to="/"
                     className="btn btn-outline-dark m-2 text-white"
                     style={{ backgroundColor: "blue", color: "white" }}
                   >

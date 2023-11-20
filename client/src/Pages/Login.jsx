@@ -45,13 +45,13 @@ const Login = () => {
       } else {
         const accessToken = response?.data?.token;
         localStorage.setItem("token", JSON.stringify(accessToken));
-        localStorage.setItem("user", JSON.stringify(response?.data?.user));
+        localStorage.setItem("user",(response?.data?.user?._id));
 
         // setauth({ accessToken });
         // setrefreshToken(response?.data?.tokens?.refresh);
         navigate(from, { replace: true });
       }
-      navigate("/Home");
+      navigate("/");
       // console.log(response.data.token);
     } catch (err) {
       console.log(err);

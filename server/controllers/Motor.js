@@ -7,13 +7,13 @@ import jwt from "jsonwebtoken";
 export const createUserProfile = async (req, res) => {
   try {
     const { usernames, mobile_number, motor_id, password } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
     const userProfile = new motorSchema({
       usernames,
       mobile_number,
       motor_id,
-      password: hashedPassword,
+      password: password,
     });
     await userProfile.save();
     console.log("Success User");
@@ -30,30 +30,43 @@ export const createUserProfile = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-    try {
-      const { mobile_number, password } = req.body;
-      const user = await motorSchema.findOne({ mobile_number: mobile_number });
-      if (!user) return res.status(400).json({ msg: "User not found" });
-  
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) return res.status(401).json({ msg: "Invalid credentials" });
-  
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      delete user.password;
-      res.status(200).json({user:user,token:token});;
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  };
+  try {
+    const { mobile_number, password } = req.body;
 
+    const user = await motorSchema.findOne({ mobile_number: mobile_number });
+    if (!user) return res.status(400).json({ msg: "User not found" });
 
+    // const isMatch = await bcrypt.compare(password, user.password);
+    if (password !== user.password) return res.status(401).json({ msg: "Invalid credentials" });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete user.password;
+    res.status(200).json({ user: user, token: token });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 export const getUserProfile = async (req, res) => {
-  const { username } = req.params;
-
+  const { token } = req.params;
+  const Id = "654c7860378a6c11e7e5817f"
   try {
     // Find a user profile by the specified username
-    const user = await motorSchema.findOne({ usernames: username });
+
+    // Replace 'yourSecretKey' with the actual secret key used to sign the token
+    const secretKey = process.env.JWT_SECRET;
+
+    // Replace 'yourToken' with the actual JWT token you want to decode
+    
+
+    jwt.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        console.error("Error decoding token:", err.message);
+      } else {
+        console.log("Decoded Token:", decoded);
+      }
+    });
+    const user = await motorSchema.findOne({ _id: Id });
 
     if (user) {
       return res.status(200).json(user);
@@ -72,12 +85,11 @@ export const getMotorData = async (req, res) => {
     const username = req.params.username;
     console.log(username);
     const user = await motorSchema.findOne({ usernames: { $in: [username] } });
-    
+
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Prepare the response data
     const motorData = {
       vr: user.vr,
       vx: user.vx,
@@ -139,7 +151,7 @@ export const changeMotorStatus = async (req, res) => {
     if (!motor) {
       return res.status(404).json({ error: "User not found" });
     }
-    
+
     motor.motor_status = motor_status;
     await motor.save();
 
@@ -175,13 +187,12 @@ export const addUserToUserProfile = async (req, res) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error",actualError: err.message });
+    res
+      .status(500)
+      .json({ error: "Internal server error", actualError: err.message });
   }
 };
 // module.exports = { getUserData };
-
-
-
 
 export const getMotorById = async (req, res) => {
   const { motorId } = req.params;
@@ -190,12 +201,12 @@ export const getMotorById = async (req, res) => {
     const motor = await motorSchema.findOne({ motor_id: motorId });
 
     if (!motor) {
-      return res.status(404).json({ message: 'Motor not found' });
+      return res.status(404).json({ message: "Motor not found" });
     }
 
     return res.status(200).json(motor);
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -206,50 +217,45 @@ export const getMotorByMobileNumber = async (req, res) => {
     const motor = await motorSchema.findOne({ mobile_number: mobileNumber });
 
     if (!motor) {
-      return res.status(404).json({ message: 'Motor not found' });
+      return res.status(404).json({ message: "Motor not found" });
     }
 
     return res.status(200).json(motor);
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
-
-
-
 
 export const getAllMotorData = async (req, res) => {
   try {
     const motors = await motorSchema.find();
-    
+
     return res.status(200).json(motors);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
-
 export const getDataForUser = async (req, res) => {
   const Id = req.params.Id; // Assuming the user's _id is passed as a string parameter
-  
-  console.log(Id)
+
+  console.log(Id);
   try {
     // const objectId = ObjectId(Id);
     // const objectId = mongoose.Types.ObjectId(Id);
 
-     // Convert the string to ObjectId
+    // Convert the string to ObjectId
     //  console.log(objectId)
     const motorData = await motorSchema.findOne({ _id: Id });
     // const motorData = await motorSchema.findById(ObjectId(Id)).exec();
 
     if (!motorData) {
-      return res.status(404).json({ message: 'No data found for the user' });
+      return res.status(404).json({ message: "No data found for the user" });
     }
 
     return res.status(200).json(motorData);
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
-

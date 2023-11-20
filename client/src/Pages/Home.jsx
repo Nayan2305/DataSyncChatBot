@@ -2,9 +2,15 @@ import React from "react";
 import { Navbar, Footer } from "../Components/index.js";
 import "./Home.css"; // Import the CSS for the Home component
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState} from "react";
 
 const Home = () => {
+  const auth = localStorage.getItem("user");
+  // const [filteredData, setFilteredData] = useState([]);
+  console.log(auth);
   const navigate = useNavigate();
+
 
   const handleAddMachineClick = () => {
     navigate("/ViewMachines");
@@ -13,6 +19,10 @@ const Home = () => {
     navigate("/AddUser");
   };
 
+ 
+
+
+
   return (
     <>
       <Navbar />
@@ -20,7 +30,7 @@ const Home = () => {
         <div className="newcontainer">
           {/* Container for Image */}
           <div className="image-container">
-            <img src="machine.jpeg" alt="Your Image" />
+            <img src="machine1.jpeg" alt="Your Image" />
           </div>
           <div className="text-container">
             <p>
@@ -40,27 +50,34 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-container">
-        <div className="grid-container">
-          <div className="home-container-item">
-            <div className="partition">
-              <p>Click below to add a machine</p>
-            </div>
+      {auth ==  '655b078af1a025cc1a00f758' ? (
+ <div className="home-container">
+ <div className="grid-container">
+   <div className="home-container-item">
+     <div className="partition">
+       <p>Click below to add a machine</p>
+     </div>
 
-            <button className="add-button" onClick={handleAddMachineClick}>
-              View Machines
-            </button>
-          </div>
-          <div className="home-container-item">
-            <div className="partition">
-              <p>Click below to add a user</p>
-            </div>
-            <button className="add-button" onClick={handleAddClick}>
-              Add User
-            </button>
-          </div>
-        </div>
-      </div>
+     <button className="add-button" onClick={handleAddMachineClick}>
+       View Machines
+     </button>
+   </div>
+   <div className="home-container-item">
+     <div className="partition">
+       <p>Click below to add a user</p>
+     </div>
+     <button className="add-button" onClick={handleAddClick}>
+       Add User
+     </button>
+   </div>
+ </div>
+</div>
+                ) : (
+                  <></>
+                )}
+
+      
+
       <div className="container">
         <div className="card-container">
           <div className="card">
