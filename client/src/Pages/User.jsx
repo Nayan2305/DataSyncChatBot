@@ -38,22 +38,24 @@ const User = () => {
           },
         }
       );
+      
       console.log(response.data.motor_status);
     } catch (err) {
       console.log(err);
     }
   }
 
-  const handleMachineToggle = async(e) => {
+  const handleMachineToggle = async(motor_id, motorStatus) => {
     // e.preventDefault();
     checkstatus();
 
     try {
+       const val = motorStatus==1 ? "0" :"1";
         const data = {
-            motor_status : "1",
+            motor_status : val
         }
       const response = await axios.put(
-        ` http://localhost:4000/api/change_motor_status/${auth}`,
+        ` http://localhost:4000/api/change_motor_status/${motor_id}`,
         data,
         {
           headers: {
@@ -157,7 +159,7 @@ const User = () => {
                 <td>{data.motor_status ? "Running" : "Stopped"}</td>
                 <td>{new Date(data.updatedAt).toLocaleString()}</td>
                 <td>
-                  <button onClick={() => handleMachineToggle(data.machineId)}>
+                  <button onClick={() => handleMachineToggle(data.motor_id, data.motor_status)}>
                     {data.motor_status ? "Turn Off" : "Turn On"}
                   </button>
                 </td>

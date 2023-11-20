@@ -141,12 +141,13 @@ export const insertOrUpdateMotorData = async (req, res) => {
 
 export const changeMotorStatus = async (req, res) => {
   try {
-    const { username } = req.params;
+    const { motor_id } = req.params;
     const { motor_status } = req.body;
     // console.log(username);
     console.log(motor_status);
     // Find the user by user_id
-    const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
+    // const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
+    let motor = await motorSchema.findOne({ motor_id });
 
     if (!motor) {
       return res.status(404).json({ error: "User not found" });

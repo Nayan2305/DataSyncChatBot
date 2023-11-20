@@ -19,7 +19,7 @@ router.post('/create_user_profile', createUserProfile);
 router.get('/get_user_profile/:token', getUserProfile);
 router.get('/user_data/:username', getMotorData);
 router.put('/insert_motor_data/:motor_id', insertOrUpdateMotorData);
-router.put('/change_motor_status/:username', changeMotorStatus);
+router.put('/change_motor_status/:motor_id', changeMotorStatus);
 router.put('/add_user_id/:username', addUserToUserProfile);
 router.post("/login", login);
 
