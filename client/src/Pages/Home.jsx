@@ -79,7 +79,7 @@ const Home = () => {
       
 
       <div className="container">
-        <div className="card-container">
+        {/* <div className="card-container"> */}
           <div className="card">
             <img src={"/QR.jpg"} className="rounded" alt="..." />
             <div className="card-body">
@@ -96,7 +96,7 @@ const Home = () => {
                 Access Bot
               </a>
             </div>
-          </div>
+          {/* </div> */}
         </div>
       </div>
       <Footer />
