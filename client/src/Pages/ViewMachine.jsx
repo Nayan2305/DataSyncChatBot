@@ -54,6 +54,7 @@ const SearchPage = () => {
       console.log("Search phone error:", err);
       // Handle errors appropriately (e.g., show an error message)
     }
+    setSearchPhone("");
   };
 
   const searchMotor = async (e) => {
@@ -78,6 +79,7 @@ const SearchPage = () => {
       console.log("Search motor error:", err);
       // Handle errors appropriately (e.g., show an error message)
     }
+    setMotorId("");
   };
 
   const getalldata = async (e) => {
@@ -109,7 +111,7 @@ const SearchPage = () => {
 
         <div className="search-container">
           <div className="search-input">
-            <label>Phone: </label>
+            <label>Phone No: </label>
             <input
               className="inp"
               type="text"

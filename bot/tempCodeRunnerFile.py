@@ -1,1 +1,1 @@
-print(username);  
+http://localhost:4000/api/user_data/{username}

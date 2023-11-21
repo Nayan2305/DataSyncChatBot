@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 import { Navbar ,Footer} from '../Components';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
 
 export const Contact = () => {
     const navigate = useNavigate();

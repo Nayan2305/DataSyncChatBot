@@ -8,7 +8,7 @@ import { Navbar, Footer } from "../Components";
 const User = () => {
   const auth = localStorage.getItem("user");
   const [mobileNumber, setMobileNumber] = useState(""); 
-  const [username,setusername] = useState("");
+  const [username,setusername] = useState([]);
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -68,7 +68,7 @@ const User = () => {
 
 
   const returnHome = () => {
-    navigate("/Home");
+    navigate("/");
   };
 
   const getData = async (e) => {
@@ -81,10 +81,10 @@ const User = () => {
         `http://localhost:4000/api/motor/user/${auth}`
       );
 
-      console.log("data:", response.data);
       const userMobileNumber = response.data.mobile_number; // Adjust based on your API response structure
       setMobileNumber(userMobileNumber);
-      setusername(response.data.usernames);
+      setusername(response.data.usernames.join(' , '));
+
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {

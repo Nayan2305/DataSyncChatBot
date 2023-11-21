@@ -4,7 +4,10 @@ import mongoose from 'mongoose';
 const motorSchema = new mongoose.Schema({
   usernames: [String],  // An array of usernames
   userid: [String],    // An array of userids
-  mobile_number: String,
+  mobile_number: {
+    type:String,
+    unique:true
+  },
   motor_id: {
     type: String,
     unique: true

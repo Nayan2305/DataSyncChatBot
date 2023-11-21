@@ -83,7 +83,7 @@ export const getUserProfile = async (req, res) => {
 export const getMotorData = async (req, res) => {
   try {
     const username = req.params.username;
-    console.log(username);
+
     const user = await motorSchema.findOne({ usernames: { $in: [username] } });
 
     if (!user) {
@@ -144,7 +144,7 @@ export const changeMotorStatus = async (req, res) => {
     const { motor_id } = req.params;
     const { motor_status } = req.body;
     // console.log(username);
-    console.log(motor_status);
+
     // Find the user by user_id
     // const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
     let motor = await motorSchema.findOne({ motor_id });
@@ -241,7 +241,6 @@ export const getAllMotorData = async (req, res) => {
 export const getDataForUser = async (req, res) => {
   const Id = req.params.Id; // Assuming the user's _id is passed as a string parameter
 
-  console.log(Id);
   try {
     // const objectId = ObjectId(Id);
     // const objectId = mongoose.Types.ObjectId(Id);
