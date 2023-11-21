@@ -26,10 +26,10 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="center-container">
+      <div className="container mx-auto my-4 ">
         <div className="newcontainer">
           {/* Container for Image */}
-          <div className="image-container">
+          <div className="image-container d-none d-md-block">
             <img src="machine1.jpeg" alt="Your Image" />
           </div>
           <div className="text-container">
@@ -78,7 +78,7 @@ const Home = () => {
 
       
 
-      <div className="container">
+      <div className="qr-container">
         {/* <div className="card-container"> */}
           <div className="card">
             <img src={"/QR.jpg"} className="rounded" alt="..." />

@@ -140,20 +140,24 @@ const User = () => {
           </tbody>
         </table>
         {/* Render your filtered data */}
-        <table className="table table-striped">
+        <table className="table table-striped table-responsive-md">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">Username</th>
+              <th scope="col">Motor Id</th>
+              <th scope="col">Fault Status</th>
+              <th scope="col">Motor Status</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">Turn on/off </th>
+              
             </tr>
           </thead>
           <tbody>
             {filteredData.map((data) => (
               <tr key={data.id}>
                 <th scope="row">{data.id}</th>
-                <td>{data.mobile_number}</td>
+                <td>{data.usernames}</td>
                 <td>{data.motor_id}</td>
                 <td>{data.fault_status ? "Faulty" : "Not Faulty"}</td>
                 <td>{data.motor_status ? "Running" : "Stopped"}</td>

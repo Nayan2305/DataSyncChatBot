@@ -14,12 +14,12 @@ const AddUser = () => {
   const [Phone, setPhone] = useState("");
   const [machineId, setmachineId] = useState("");
 
-  useEffect(() => {
-    const auth = localStorage.getItem("user");
-    if (auth) {
+  // useEffect(() => {
+  //   const auth = localStorage.getItem("user");
+  //   if (auth) {
       
-    }
-  }, []);
+  //   }
+  // }, []);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -75,6 +75,7 @@ const AddUser = () => {
       console.error("Error creating user profile:", err);
       // Handle any errors here
     }
+    navigate("/");
   };
 
   return (

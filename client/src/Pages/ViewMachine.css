@@ -3,7 +3,7 @@
   display: flexbox;
   max-width: 80%;
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .fetch-container {

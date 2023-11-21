@@ -58,12 +58,16 @@ p{
   margin-top: 80px;
   
 }
-.container{
+.qr-container{
   display: flex;
   justify-content: center;
   padding: 20px;
+  margin-top : 25px;
+  text-align: center;
 }
+
 .grid-container {
+  
   display: flex;
   gap: 20px;
 }

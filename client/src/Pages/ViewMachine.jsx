@@ -121,6 +121,7 @@ const SearchPage = () => {
             Search
           </button>
         </div>
+      
 
         <div className="search-container">
           <div className="search-input">
@@ -134,16 +135,19 @@ const SearchPage = () => {
           <button className="btn btn-primary" onClick={searchMotor}>
             Search
           </button>
-        </div>
+          <br />
+          <br />
 
-        <div className="fetch-container">
           <button className="btn btn-primary fetchall" onClick={getalldata}>
             Fetch all details
           </button>
+   
         </div>
+
+        
         <h2>Filtered Data</h2>
 
-        <table className="table table-striped">
+        <table className="table table-striped table-responsive-md">
           <thead>
             <tr>
               <th scope="col">Mobile Number</th>
