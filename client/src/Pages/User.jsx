@@ -7,18 +7,10 @@ import { Navbar, Footer } from "../Components";
 
 const User = () => {
   const auth = localStorage.getItem("user");
-  console.log(auth);
-
+  const [mobileNumber, setMobileNumber] = useState(""); 
+  const [username,setusername] = useState("");
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState({
-    username: "John Doe",
-    phoneNumber: "123-456-7890",
-    email: "johndoe@example.com",
-    address: "123 Main St, Cityville",
-    bot_id: "1234",
-    bot_token: "ifi48f9wdf8",
-  });
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -39,7 +31,6 @@ const User = () => {
         }
       );
       
-      console.log(response.data.motor_status);
     } catch (err) {
       console.log(err);
     }
@@ -74,13 +65,7 @@ const User = () => {
     // You can save the edited data to your backend or perform any other required actions here.
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
-  };
+
 
   const returnHome = () => {
     navigate("/Home");
@@ -97,7 +82,9 @@ const User = () => {
       );
 
       console.log("data:", response.data);
-
+      const userMobileNumber = response.data.mobile_number; // Adjust based on your API response structure
+      setMobileNumber(userMobileNumber);
+      setusername(response.data.usernames);
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {
@@ -130,12 +117,12 @@ const User = () => {
           <tbody>
             <tr>
               <td className="entry-label">Phone No.</td>
-              <td>123456789</td>
+              <td>{mobileNumber.substring(2)}</td>
             </tr>
 
             <tr>
-              <td className="entry-label">Bot-name</td>
-              <td>DataBot</td>
+              <td className="entry-label">Username</td>
+              <td>{username}</td>
             </tr>
           </tbody>
         </table>
@@ -144,7 +131,6 @@ const User = () => {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Username</th>
               <th scope="col">Motor Id</th>
               <th scope="col">Fault Status</th>
               <th scope="col">Motor Status</th>
@@ -157,7 +143,6 @@ const User = () => {
             {filteredData.map((data) => (
               <tr key={data.id}>
                 <th scope="row">{data.id}</th>
-                <td>{data.usernames}</td>
                 <td>{data.motor_id}</td>
                 <td>{data.fault_status ? "Faulty" : "Not Faulty"}</td>
                 <td>{data.motor_status ? "Running" : "Stopped"}</td>

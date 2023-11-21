@@ -33,9 +33,10 @@ const SearchPage = () => {
   const searchPhoneData = async (e) => {
     e.preventDefault();
     console.log(searchPhone);
+    const formattedSearchPhone = `91${searchPhone}`;
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/motor/mobile/${searchPhone}`
+        `http://localhost:4000/api/motor/mobile/${formattedSearchPhone}`
       );
 
       console.log("Search phone data:", response.data);
@@ -112,7 +113,7 @@ const SearchPage = () => {
             <input
               className="inp"
               type="text"
-              placeholder="98765432201"
+              placeholder="9876543220"
               value={searchPhone}
               onChange={(e) => setSearchPhone(e.target.value)}
             />
@@ -161,7 +162,7 @@ const SearchPage = () => {
           <tbody>
             {filteredData.map((item) => (
               <tr key={item._id}>
-                <td>{item.mobile_number}</td>
+                <td>{item.mobile_number.substring(2)}</td>
                 <td>{item.motor_id}</td>
                 <td>{item.fault_status ? "Faulty" : "Not Faulty"}</td>
                 <td>{item.motor_status ? "Running" : "Stopped"}</td>
