@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Login.css"; // Import your CSS file
 import { useNavigate, useLocation } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
+import { Navbar } from "../Components";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 
@@ -58,20 +59,21 @@ const AddUser = () => {
         password: password,
       };
 
-      await axios.post(
+      const response = await axios.post(
         "http://localhost:4000/api/create_user_profile",
         data,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-
+        console.log(response);
       alert("Password Created Successfully: " + password);
       console.log("Password Created Successfully:", password);
 
       navigate("/");
 
     } catch (err) {
+      alert("Phone Number / Motor Id Already Exists");
       console.error("Error creating user profile:", err);
       // Handle any errors here
     }
@@ -79,6 +81,9 @@ const AddUser = () => {
   };
 
   return (
+    <>
+    <Navbar/>
+
     <div className="login-container">
       <div className="login-box">
         <h2 className="instagram-logo">Add User</h2>
@@ -133,6 +138,7 @@ const AddUser = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

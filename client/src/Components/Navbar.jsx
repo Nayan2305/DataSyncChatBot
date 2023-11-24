@@ -21,7 +21,7 @@ const Navbar = () => {
         style={{ width: "100%" }}
       >
         <div className="container py-2">
-          <Link to="/Home">
+          <Link to="/">
             <img src={image} alt="Logo" width="100" height="50" />
           </Link>
           <button
