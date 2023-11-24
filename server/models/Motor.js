@@ -13,7 +13,10 @@ const motorSchema = new mongoose.Schema({
     type: String,
     min:5,
 },
-  motor_status: Boolean,
+  motor_status:{
+    type: Boolean,
+    default: false
+  },
   fault_status: Boolean,
   ir: Number,
   ix: Number,
