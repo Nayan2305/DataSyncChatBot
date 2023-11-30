@@ -4,7 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import { Navbar } from "../Components";
 import "react-phone-input-2/lib/style.css";
-import axios from "axios";
+// import Axios from "Axios";
+import {Axios} from "../config/index.js";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -59,8 +60,8 @@ const AddUser = () => {
         password: password,
       };
 
-      const response = await axios.post(
-        "http://localhost:4000/api/create_user_profile",
+      const response = await Axios.post(
+        "create_user_profile",
         data,
         {
           headers: { "Content-Type": "application/json" },

@@ -8,7 +8,8 @@ import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { CgSpinner } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import Axios from "Axios";
+import {Axios} from "../config/index.js";
 const Register = () => {
   const navigate = useNavigate();
   const [username1, setUsername1] = useState("");
@@ -42,8 +43,8 @@ const Register = () => {
         password: password, // Assuming password is not null
       };
   
-      await axios.post(
-        "http://localhost:4000/api/create_user_profile",
+      await Axios.post(
+        "create_user_profile",
         data,
         {
           headers: { "Content-Type": "application/json" },

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import image from "./image.jpeg";
 import { NavLink, useNavigate } from "react-router-dom";
 // import './navbar.css';
-import user from "./user.png";
+// import user from "./user.png";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JavaScript
 

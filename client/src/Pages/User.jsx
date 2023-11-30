@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
+import {Axios} from "../config/index.js";
 import "./User.css";
 import userProfileImage from "./user.png";
 import { useNavigate } from "react-router-dom";
@@ -22,8 +23,8 @@ const User = () => {
     // e.preventDefault();
 
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/user_data/${auth}`,
+      const response = await Axios.get(
+        `user_data/${auth}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,8 +46,8 @@ const User = () => {
         const data = {
             motor_status : val
         }
-      const response = await axios.put(
-        ` http://localhost:4000/api/change_motor_status/${motor_id}`,
+      const response = await Axios.put(
+        `change_motor_status/${motor_id}`,
         data,
         {
           headers: {
@@ -77,8 +78,8 @@ const User = () => {
     }
 
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/motor/user/${auth}`
+      const response = await Axios.get(
+        `motor/user/${auth}`
       );
 
       const userMobileNumber = response.data.mobile_number; // Adjust based on your API response structure

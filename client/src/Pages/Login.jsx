@@ -3,7 +3,8 @@ import "./Login.css"; // Import your CSS file
 import { useNavigate,useLocation  } from "react-router-dom";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import axios from "axios";
+// import Axios from "Axios";
+import { Axios } from "../config/index.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Login = () => {
     if (auth) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
   const from = location.state?.from?.pathname || "/";
   
 
@@ -29,8 +30,8 @@ const Login = () => {
         mobile_number: Phone, // Assuming Phone is not null
         password: password, // Assuming password is not null
       };
-      const response = await axios.post(
-        "http://localhost:4000/api/login/",
+      const response = await Axios.post(
+        "login",
         data,
         {
           headers: {
@@ -58,10 +59,10 @@ const Login = () => {
     }
   };
 
-  const handleSignup = () => {
-    // Do something to signup the user.
-    navigate("/Register");
-  };
+  // const handleSignup = () => {
+  //   // Do something to signup the user.
+  //   navigate("/Register");
+  // };
 
   return (
     <div className="login-container">

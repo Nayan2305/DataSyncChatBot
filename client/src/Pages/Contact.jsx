@@ -2,7 +2,7 @@ import React from 'react'
 import './contact.css'
 import { useRef } from 'react';
 import emailjs from 'emailjs-com'
-import { Navbar ,Footer} from '../Components';
+import { Navbar} from '../Components';
 import { useNavigate } from 'react-router-dom';
 
 

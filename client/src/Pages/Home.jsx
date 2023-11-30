@@ -2,8 +2,8 @@ import React from "react";
 import { Navbar, Footer } from "../Components/index.js";
 import "./Home.css"; // Import the CSS for the Home component
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState} from "react";
+// import axios from "axios";
+// import { useState} from "react";
 
 const Home = () => {
   const auth = localStorage.getItem("user");
@@ -30,7 +30,7 @@ const Home = () => {
         <div className="newcontainer">
           {/* Container for Image */}
           <div className="image-container d-none d-md-block">
-            <img src="machine1.jpeg" alt="Your Image" />
+            <img src="machine1.jpeg" alt="Your Machine" />
           </div>
           <div className="text-container">
             <p>
@@ -50,7 +50,7 @@ const Home = () => {
         </div>
       </div>
 
-      {auth ==  '655b078af1a025cc1a00f758' ? (
+      {auth ===  '655b078af1a025cc1a00f758' ? (
  <div className="home-container">
  <div className="grid-container">
    <div className="home-container-item">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ViewMachine.css";
-import axios from "axios";
+// import axios from "axios";
+import {Axios} from "../config/index.js";
 import { Navbar, Footer } from "../Components";
 
 const SearchPage = () => {
@@ -11,7 +12,7 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/motor/");
+        const response = await Axios.get("motor");
         console.log("Fetched data:", response.data);
 
         // Check if the response data is an array before setting it to state
@@ -35,8 +36,8 @@ const SearchPage = () => {
     console.log(searchPhone);
     const formattedSearchPhone = `91${searchPhone}`;
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/motor/mobile/${formattedSearchPhone}`
+      const response = await Axios.get(
+        `motor/mobile/${formattedSearchPhone}`
       );
 
       console.log("Search phone data:", response.data);
@@ -60,8 +61,8 @@ const SearchPage = () => {
   const searchMotor = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/motor/${motorId}`
+      const response = await Axios.get(
+        `motor/${motorId}`
       );
 
       console.log("Search motor data:", response.data);
@@ -85,8 +86,8 @@ const SearchPage = () => {
   const getalldata = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
-        `http://localhost:4000/api/get-all-motorData/all`
+      const response = await Axios.get(
+        `get-all-motorData/all`
       );
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
