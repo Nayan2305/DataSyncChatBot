@@ -30,7 +30,7 @@ while True:
                 username = update["message"]["from"].get("username", "N/A")
 
                 if message_text=="/start":
-                    url = f"http://localhost:4000/api/add_user_id/{username}"
+                    url = f"http://iotapi.sunshineagro.in/api/add_user_id/{username}"
 
                     # Rest of your code
                     payload = {
@@ -42,7 +42,7 @@ while True:
                     print(response.text)
 
                 elif message_text=="/checkstatus":
-                    url = f"http://localhost:4000/api/user_data/{username}"
+                    url = f"http://iotapi.sunshineagro.in/api/user_data/{username}"
 
                     headers = {'Content-Type': 'application/json'}
                     data = requests.get(url, headers=headers).json()  # Parse the JSON response
@@ -61,7 +61,7 @@ while True:
                 
                 elif message_text=="/turnonmachine":
                 
-                    url=f"http://localhost:4000/api/change_motor_status/{username}"
+                    url=f"http://iotapi.sunshineagro.in/api/change_motor_status/{username}"
                     payload={
                         "motor_status":1
                     }
@@ -77,7 +77,7 @@ while True:
 
                 elif message_text=="/turnoffmachine":
                 
-                    url=f"http://localhost:4000/api/change_motor_status/{username}"
+                    url=f"http://iotapi.sunshineagro.in/api/change_motor_status/{username}"
                     payload={
                         "motor_status":0
                     }
