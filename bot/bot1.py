@@ -30,7 +30,7 @@ while True:
                 username = update["message"]["from"].get("username", "N/A")
 
                 if message_text=="/start":
-                    url = f"http://iotapi.sunshineagro.in/api/add_user_id/{username}"
+                    url = f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/add_user_id/{username}"
 
                     # Rest of your code
                     payload = {
@@ -40,9 +40,8 @@ while True:
                     headers = {'Content-Type': 'application/json'}
                     response = requests.put(url, json=payload, headers=headers)
                     print(response.text)
-
                 elif message_text=="/checkstatus":
-                    url = f"http://iotapi.sunshineagro.in/api/user_data/{username}"
+                    url = f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/user_data/{username}"
 
                     headers = {'Content-Type': 'application/json'}
                     data = requests.get(url, headers=headers).json()  # Parse the JSON response
@@ -56,12 +55,9 @@ while True:
                         'text': formatted_message,  # Send the formatted JSON as the message text
                     }
                     response = requests.post(url, json=payload)
-                    
-                 
-                
                 elif message_text=="/turnonmachine":
-                
-                    url=f"http://iotapi.sunshineagro.in/api/change_motor_status/{username}"
+
+                    url=f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_status/{username}"
                     payload={
                         "motor_status":1
                     }
@@ -73,11 +69,11 @@ while True:
                         'text': "Motor turned on",
                     }
                     response = requests.post(url, json=payload)
-                    
+
 
                 elif message_text=="/turnoffmachine":
-                
-                    url=f"http://iotapi.sunshineagro.in/api/change_motor_status/{username}"
+
+                    url=f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_status/{username}"
                     payload={
                         "motor_status":0
                     }
@@ -89,11 +85,11 @@ while True:
                         'text': "Motor turned off",
                     }
                     response = requests.post(url, json=payload)
-                
+
                 else:
-                
-                    
-                
+
+
+
                     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
                     payload = {
                         'chat_id': user_id,
@@ -103,7 +99,7 @@ while True:
 
 
 
-                # print(username);    
+                # print(username);
                 # print(user_id)
 
                 # Update the offset to avoid processing the same update again
