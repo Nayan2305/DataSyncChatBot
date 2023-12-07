@@ -13,7 +13,7 @@ export const Contact = () => {
     const sendEmail = (e) => {
       e.preventDefault();
   
-      emailjs.sendForm('service_3twzkje', 'template_6ge2bld', form.current, 'jqkCfJNgbukRgedru')
+      emailjs.sendForm('service_prb7iro', 'template_pj92t3m', form.current, 'zVVKARqQFHJzI60FA')
         .then((result) => {
             console.log(result.text);
             console.log("Message sent");

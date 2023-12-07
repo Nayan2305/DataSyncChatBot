@@ -36,7 +36,7 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse justify-content-center"
+            className="collapse navbar-collapse ms-auto justify-content-center"
             id="navbarNav"
           >
             <ul className="navbar-nav align-items-center">
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <a
                   className="user-text"
                   href="/user"
-                  style={{ marginLeft: "30px" }}
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
                 >
                   My Account
                 </a>

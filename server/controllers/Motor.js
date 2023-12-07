@@ -162,6 +162,29 @@ module.exports.changeMotorStatus = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+export const changeMotorStatusbybot = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { motor_status } = req.body;
+    // console.log(username);
+
+    // Find the user by user_id
+     const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
+    // let motor = await motorSchema.findOne({ motor_id });
+
+    if (!motor) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    motor.motor_status = motor_status;
+    await motor.save();
+
+    res.json({ message: "Motor status updated successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 module.exports.addUserToUserProfile = async (req, res) => {
   try {

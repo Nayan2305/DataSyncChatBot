@@ -160,6 +160,7 @@ const SearchPage = () => {
               <th scope="col">Motor Status</th>
               <th scope="col">Username</th>
               <th scope="col">Time Created </th>
+              <th scope="col">Password</th>
             </tr>
           </thead>
           <tbody>
@@ -173,6 +174,7 @@ const SearchPage = () => {
                 <td>{item.usernames.join(", ")}</td>
                 <td>{new Date(item.createdAt).toLocaleString()}</td>
                 {/* Add more fields based on your data structure */}
+                <td>{item.password}</td>
               </tr>
             ))}
           </tbody>
