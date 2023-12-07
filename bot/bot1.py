@@ -30,7 +30,7 @@ while True:
                 username = update["message"]["from"].get("username", "N/A")
 
                 if message_text=="/start":
-                    url = f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/add_user_id/{username}"
+                    url = f"http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/add_user_id/{username}"
 
                     # Rest of your code
                     payload = {
@@ -41,7 +41,7 @@ while True:
                     response = requests.put(url, json=payload, headers=headers)
                     print(response.text)
                 elif message_text=="/checkstatus":
-                    url = f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/user_data/{username}"
+                    url = f"http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/user_data/{username}"
 
                     headers = {'Content-Type': 'application/json'}
                     data = requests.get(url, headers=headers).json()  # Parse the JSON response
@@ -57,23 +57,25 @@ while True:
                     response = requests.post(url, json=payload)
                 elif message_text=="/turnonmachine":
 
-                    url=f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_status/{username}"
+                    url=f"http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_statusbybot/{username}"
                     payload={
                         "motor_status":1
                     }
                     headers = {'Content-Type': 'application/json'}
                     response = requests.put(url,  json=payload,headers=headers)
+                    print(response)
                     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
                     payload = {
                         'chat_id': user_id,
                         'text': "Motor turned on",
                     }
                     response = requests.post(url, json=payload)
+                    print(response)
 
 
                 elif message_text=="/turnoffmachine":
 
-                    url=f"https://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_status/{username}"
+                    url=f"http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/change_motor_statusbybot/{username}"
                     payload={
                         "motor_status":0
                     }
@@ -107,3 +109,4 @@ while True:
 
     except Exception as e:
         print("Error:", e)
+
