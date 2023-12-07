@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 // import mongoose from "mongoose";
 // import cors from "cors";
+const compression = require('compression');
 const cors = require('cors');
 const dotenv = require('dotenv');
 // import dotenv from "dotenv";
@@ -13,7 +14,7 @@ const dotenv = require('dotenv');
 // import morgan from "morgan";
 // import path from "path";
 const path = require('path');
-const { fileURLToPath } = require("url");
+// const { fileURLToPath } = require("url");
 //import User from "./models/User.js";
 
 const userRoutes = require("./routes/Motor.js");
@@ -26,13 +27,24 @@ const userRoutes = require("./routes/Motor.js");
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors())
+// app.use(cors())
 app.use(bodyParser.json());
+app.use(compression());
+const corsOptions = {
+  origin: ['http://iot.sunshineagro.in','http://localhost:3000'], // Replace with your client's origin
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization',
+};
 
+app.use(cors(corsOptions));
+
+// Add this middleware for handling preflight requests
+app.options('*', cors(corsOptions));
 
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000', 'http://iot.sunshineagro.in');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -45,7 +57,7 @@ app.use(function(req, res, next) {
 
 
 /*Mongoose setup*/
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 4001;
 mongoose
   .connect(process.env.MONGO_URL, {
     dbName: `DataSyncChatBot`,
@@ -60,15 +72,6 @@ mongoose
 
 
 
-
-  //routes
-
-
-// app.use('/api/v1/product',product)
-// app.use('/api/v1/users',User)
-// // app.use('/api/v1/orders',orders)
-// app.use('/api/v1/auth',authRoutes)
-// // app.use('/api/v1/payment',payment)
 app.use('/api', userRoutes);
 
 

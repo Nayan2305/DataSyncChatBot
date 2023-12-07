@@ -34,5 +34,5 @@ const motorSchema = new mongoose.Schema({
 
 const MotorData = mongoose.model('Motor', motorSchema);
 
-// module.exports = MotorData;
-module.exports.MotorData;
+module.exports = MotorData;
+// module.exports.MotorData;

@@ -10,7 +10,7 @@ const isLocalhost = Boolean(
 
 const API_URL = isLocalhost
     ? "http://localhost:4000/api/"
-    : "http://Iotapi.sunshineagro.in/api/";
+    : "http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/";
 
 export const Axios = axios.create({
     withCredentials: true,
