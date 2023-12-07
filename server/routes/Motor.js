@@ -1,7 +1,8 @@
-import express from 'express';
+// import express from 'express';
+const express = require('express');
 const router = express.Router();
 // const userController = require('../controllers/Motor.js');
-import {
+const {
     login,
     createUserProfile,
     getUserProfile, 
@@ -12,8 +13,10 @@ import {
     getMotorById,
     getMotorByMobileNumber,
     getDataForUser,
+    changeMotorStatusbybot,  
     getAllMotorData,
     changeMotorStatusbybot} from '../controllers/Motor.js'
+
 
 // Create user profile
 router.post('/create_user_profile', createUserProfile);
@@ -30,4 +33,6 @@ router.get('/motor/:motorId', getMotorById);
 router.get('/motor/mobile/:mobileNumber', getMotorByMobileNumber);
 router.get('/get-all-motorData/all', getAllMotorData); // New route for getting all data
 router.get('/motor/user/:Id', getDataForUser);
-export default router
+router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
+// module.exports.router
+module.exports = router ;

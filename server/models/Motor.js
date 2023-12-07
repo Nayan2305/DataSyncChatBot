@@ -1,5 +1,6 @@
 // const mongoose = require('mongoose');
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const motorSchema = new mongoose.Schema({
   usernames: [String],  // An array of usernames
@@ -33,5 +34,5 @@ const motorSchema = new mongoose.Schema({
 
 const MotorData = mongoose.model('Motor', motorSchema);
 
-// module.exports = MotorData;
-export default MotorData;
+module.exports = MotorData;
+// module.exports.MotorData;
