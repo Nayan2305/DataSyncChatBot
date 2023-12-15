@@ -55,7 +55,7 @@ const Home = () => {
  <div className="grid-container">
    <div className="home-container-item">
      <div className="partition">
-       <p>Click below to add a machine</p>
+       <p>Click to view All User </p>
      </div>
 
      <button className="add-button" onClick={handleAddMachineClick}>
@@ -72,12 +72,8 @@ const Home = () => {
    </div>
  </div>
 </div>
-                ) : (
-                  <></>
-                )}
-
-      
-
+      ) : (
+    <></>  )}
       <div className="qr-container">
         {/* <div className="card-container"> */}
           <div className="card">

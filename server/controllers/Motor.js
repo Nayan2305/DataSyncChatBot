@@ -162,6 +162,7 @@ export const changeMotorStatus = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 export const changeMotorStatusbybot = async (req, res) => {
   try {
     const { username } = req.params;
