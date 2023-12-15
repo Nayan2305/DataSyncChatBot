@@ -1,10 +1,10 @@
-import motorSchema from "../models/Motor.js";
-import bcrypt from "bcrypt";
+const motorSchema = require("../models/Motor.js");
+// import bcrypt from "bcrypt";
 // import ObjectId from "mongodb";
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 // import mongoose from "mongoose";
 
-export const createUserProfile = async (req, res) => {
+module.exports.createUserProfile = async (req, res) => {
   try {
     const { usernames, mobile_number, motor_id, password } = req.body;
     // const salt = await bcrypt.genSalt(10);
@@ -29,7 +29,7 @@ export const createUserProfile = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+module.exports.login = async (req, res) => {
   try {
     const { mobile_number, password } = req.body;
 
@@ -47,7 +47,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const getUserProfile = async (req, res) => {
+module.exports.getUserProfile = async (req, res) => {
   const { token } = req.params;
   const Id = "654c7860378a6c11e7e5817f"
   try {
@@ -80,7 +80,7 @@ export const getUserProfile = async (req, res) => {
 
 // module.exports = { createUserProfile };
 // export default {createUserProfile,getUserProfile}
-export const getMotorData = async (req, res) => {
+module.exports.getMotorData = async (req, res) => {
   try {
     const username = req.params.username;
 
@@ -109,7 +109,7 @@ export const getMotorData = async (req, res) => {
   }
 };
 
-export const insertOrUpdateMotorData = async (req, res) => {
+module.exports.insertOrUpdateMotorData = async (req, res) => {
   try {
     const { motor_id } = req.params;
     const { ir, ix, iy, vr, vx, vy, motor_status, fault_status } = req.body;
@@ -139,7 +139,7 @@ export const insertOrUpdateMotorData = async (req, res) => {
   }
 };
 
-export const changeMotorStatus = async (req, res) => {
+module.exports.changeMotorStatus = async (req, res) => {
   try {
     const { motor_id } = req.params;
     const { motor_status } = req.body;
@@ -187,7 +187,7 @@ export const changeMotorStatusbybot = async (req, res) => {
   }
 };
 
-export const addUserToUserProfile = async (req, res) => {
+module.exports.addUserToUserProfile = async (req, res) => {
   try {
     const { username } = req.params;
     const { user_id } = req.body;
@@ -219,7 +219,7 @@ export const addUserToUserProfile = async (req, res) => {
 };
 // module.exports = { getUserData };
 
-export const getMotorById = async (req, res) => {
+module.exports.getMotorById = async (req, res) => {
   const { motorId } = req.params;
 
   try {
@@ -235,7 +235,7 @@ export const getMotorById = async (req, res) => {
   }
 };
 
-export const getMotorByMobileNumber = async (req, res) => {
+module.exports.getMotorByMobileNumber = async (req, res) => {
   const { mobileNumber } = req.params;
 
   try {
@@ -251,7 +251,7 @@ export const getMotorByMobileNumber = async (req, res) => {
   }
 };
 
-export const getAllMotorData = async (req, res) => {
+module.exports.getAllMotorData = async (req, res) => {
   try {
     const motors = await motorSchema.find();
 
@@ -262,7 +262,7 @@ export const getAllMotorData = async (req, res) => {
   }
 };
 
-export const getDataForUser = async (req, res) => {
+module.exports.getDataForUser = async (req, res) => {
   const Id = req.params.Id; // Assuming the user's _id is passed as a string parameter
 
   try {
@@ -281,5 +281,30 @@ export const getDataForUser = async (req, res) => {
     return res.status(200).json(motorData);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+module.exports.changeMotorStatusbybot = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { motor_status } = req.body;
+    // console.log(username);
+
+    // Find the user by user_id
+     const motor = await motorSchema.findOne({ usernames: { $in: [username] } });
+    // let motor = await motorSchema.findOne({ motor_id });
+
+    if (!motor) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    motor.motor_status = motor_status;
+    await motor.save();
+
+    res.json({ message: "Motor status updated successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
