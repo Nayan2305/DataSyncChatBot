@@ -1,0 +1,35 @@
+/* AboutUs.css */
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #eee; /* Set your desired background color */
+    text-align: center; /* Center the text */
+  }
+  
+  .college-logo {
+    max-width: 100px; /* Set the max width for your logo */
+    max-height: 50px; /* Set the max height for your logo */
+  }
+  
+  .username-container {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  
+  .side-by-side-containers {
+    display: flex;
+    justify-content: space-around; /* Adjust as needed */
+  }
+  
+  .container1,
+  .container2 {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd; /* Set border as needed */
+    margin: 10px;
+    text-align: center;
+  }
+
+  
