@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom/client";
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home,ViewMachine,AddUser,Login,Register, PageNotFound, Contact, User } from "./Pages";
+import { Home,ViewMachine,AddUser,Login,Register, PageNotFound, Contact, User,AboutUs } from "./Pages";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -20,6 +20,7 @@ root.render(
       <Route path="/AddUser" element={ <AddUser/>} />
       <Route path="/user" element={ <User/>} />
       <Route path="/PageNotFound" element={ <PageNotFound />} />
+      <Route path="/AboutUs" element={<AboutUs/>} />
 
     </Routes>
   </Provider>
