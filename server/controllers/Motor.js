@@ -163,7 +163,7 @@ module.exports.changeMotorStatus = async (req, res) => {
   }
 };
 
-export const changeMotorStatusbybot = async (req, res) => {
+module.exports.changeMotorStatusbybot = async (req, res) => {
   try {
     const { username } = req.params;
     const { motor_status } = req.body;

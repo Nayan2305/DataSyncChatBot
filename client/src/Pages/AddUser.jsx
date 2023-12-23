@@ -60,23 +60,22 @@ const AddUser = () => {
         password: password,
       };
 
-      const response = await Axios.post(
+      await Axios.post(
         "create_user_profile",
         data,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-        console.log(response);
+      
       alert("Password Created Successfully: " + password);
       console.log("Password Created Successfully:", password);
 
       navigate("/");
 
     } catch (err) {
-      alert("Phone Number / Motor Id Already Exists");
+      // alert("Phone Number / Motor Id Already Exists");
       console.error("Error creating user profile:", err);
-      // Handle any errors here
     }
     navigate("/");
   };

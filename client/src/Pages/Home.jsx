@@ -18,11 +18,7 @@ const Home = () => {
   const handleAddClick = () => {
     navigate("/AddUser");
   };
-
- 
-
-
-
+  
   return (
     <>
       <Navbar />

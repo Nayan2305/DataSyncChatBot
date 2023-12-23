@@ -115,7 +115,7 @@ const SearchPage = () => {
             <label>Phone No: </label>
             <input
               className="inp"
-              type="text"
+              type="Number"
               placeholder="9876543220"
               value={searchPhone}
               onChange={(e) => setSearchPhone(e.target.value)}
@@ -129,7 +129,7 @@ const SearchPage = () => {
 
         <div className="search-container">
           <div className="search-input">
-            <label>Machine id: </label>
+            <label>Motor id: </label>
             <input
               type="text"
               value={motorId}
@@ -142,8 +142,8 @@ const SearchPage = () => {
           <br />
           <br />
 
-          <button className="btn btn-primary fetchall" onClick={getalldata}>
-            Fetch all details
+          <button className="btn btn-primary" onClick={getalldata}>
+            Get all details
           </button>
    
         </div>
@@ -151,7 +151,7 @@ const SearchPage = () => {
         
         <h2>Filtered Data</h2>
 
-        <table className="table table-striped table-responsive-md">
+        <table className="table custom-table-bordered table-striped table-responsive-md">
           <thead>
             <tr>
               <th scope="col">Mobile Number</th>
@@ -161,6 +161,8 @@ const SearchPage = () => {
               <th scope="col">Username</th>
               <th scope="col">Time Created </th>
               <th scope="col">Password</th>
+              <th scope="col">Block User</th>
+              <th scope="col">Delete User</th>
             </tr>
           </thead>
           <tbody>
@@ -175,6 +177,16 @@ const SearchPage = () => {
                 <td>{new Date(item.createdAt).toLocaleString()}</td>
                 {/* Add more fields based on your data structure */}
                 <td>{item.password}</td>
+                <td>  
+                  <button>
+                    Block User
+                  </button>
+                </td>
+                <td>
+                  <button>
+                    Delete User
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

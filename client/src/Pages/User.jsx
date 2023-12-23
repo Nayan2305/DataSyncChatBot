@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import {Axios} from "../config/index.js";
 import "./User.css";
-import userProfileImage from "./user.png";
 import { useNavigate } from "react-router-dom";
 import { Navbar, Footer } from "../Components";
 
 const User = () => {
+
+  const keysToDisplay = ["Vry", "Vyb", "Vbr", "Ir", "Iy", "Ib", "fault_status", "motor_status", "Last Updated"];
+
   const auth = localStorage.getItem("user");
   const [mobileNumber, setMobileNumber] = useState(""); 
   const [username,setusername] = useState([]);
+  const [motorid , setmotorid] = useState([]);
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -85,6 +88,7 @@ const User = () => {
       const userMobileNumber = response.data.mobile_number; // Adjust based on your API response structure
       setMobileNumber(userMobileNumber);
       setusername(response.data.usernames.join(' , '));
+      setmotorid(response.data.motor_id);
 
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
@@ -117,46 +121,61 @@ const User = () => {
         <table className="user-profile-table">
           <tbody>
             <tr>
-              <td className="entry-label">Phone No.</td>
+              <td className="entry-label">Phone No :</td>
               <td>{mobileNumber.substring(2)}</td>
             </tr>
 
             <tr>
-              <td className="entry-label">Username</td>
+              <td className="entry-label">Username : </td>
               <td>{username}</td>
+            </tr>
+            <tr>
+              <td className="entry-label">Motor id :</td>
+              <td>{motorid}</td>
             </tr>
           </tbody>
         </table>
         {/* Render your filtered data */}
-        <table className="table table-striped table-responsive-md">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Motor Id</th>
-              <th scope="col">Fault Status</th>
-              <th scope="col">Motor Status</th>
-              <th scope="col">Last Updated</th>
-              <th scope="col">Turn on/off </th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((data) => (
-              <tr key={data.id}>
-                <th scope="row">{data.id}</th>
-                <td>{data.motor_id}</td>
-                <td>{data.fault_status ? "Faulty" : "Not Faulty"}</td>
-                <td>{data.motor_status ? "Running" : "Stopped"}</td>
-                <td>{new Date(data.updatedAt).toLocaleString()}</td>
-                <td>
-                  <button onClick={() => handleMachineToggle(data.motor_id, data.motor_status)}>
-                    {data.motor_status ? "Turn Off" : "Turn On"}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <table className="table  table-bordered  table-striped table-responsive-md custom-table">
+  <thead>
+    <tr className="col-title" >
+    <th scope="col">Vry</th>
+    <th scope="col">Vyb</th>
+    <th scope="col">Vbr</th>
+    <th scope="col">Ir</th>
+    <th scope="col">Iy</th>
+    <th scope="col">Ib</th>
+      <th scope="col">Fault Status</th>
+      <th scope="col">Motor Status</th>
+      <th scope="col">Last Updated</th>
+      <th scope="col">Turn on/off</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredData.map((data) => (
+      <tr key={data.id}>
+
+        <td>{data.Vry}</td>
+        <td>{data.Vyb}</td>
+        <td>{data.Vbr}</td>
+        <td>{data.Ir}</td>
+        <td>{data.Iy}</td>
+        <td>{data.Ib}</td>
+
+        <td>{data.fault_status ? "Faulty" : "Not Faulty"}</td>
+        <td>{data.motor_status ? "Running" : "Stopped"}</td>
+        <td>{new Date(data.updatedAt).toLocaleString()}</td>
+        <td>
+          <button onClick={() => handleMachineToggle(data.motor_id, data.motor_status)}>
+            {data.motor_status ? "Turn Off" : "Turn On"}
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
       </div>
       {/* <Footer /> */}
     </>

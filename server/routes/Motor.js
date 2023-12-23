@@ -13,10 +13,8 @@ const {
     getMotorById,
     getMotorByMobileNumber,
     getDataForUser,
-    changeMotorStatusbybot,  
-    getAllMotorData,
-    changeMotorStatusbybot} from '../controllers/Motor.js'
-
+    changeMotorStatusbybot,
+    getAllMotorData} = require('../controllers/Motor.js');
 
 // Create user profile
 router.post('/create_user_profile', createUserProfile);

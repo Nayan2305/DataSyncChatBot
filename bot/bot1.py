@@ -87,6 +87,17 @@ while True:
                         'text': "Motor turned off",
                     }
                     response = requests.post(url, json=payload)
+                elif message_text=="/help":
+
+                   
+                    headers = {'Content-Type': 'application/json'}
+                    response = requests.put(url,  json=payload,headers=headers)
+                    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+                    payload = {
+                        'chat_id': user_id,
+                        'text': " Click here to contact admin - http://iot.sunshineagro.in/Contact",
+                    }
+                    response = requests.post(url, json=payload)
 
                 else:
 

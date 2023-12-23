@@ -9,7 +9,7 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
+    
   .user-profile-image {
     width: 100px;
     height: 100px;
@@ -31,10 +31,10 @@
   }
   
   .entry-label {
-    font-weight: bold;
+    font-weight:600;
     padding: 8px;
   }
-  
+
   .entry-value {
     padding: 8px;
     border: 1px solid #ccc;

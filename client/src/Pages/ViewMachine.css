@@ -4,7 +4,10 @@
   max-width: 80%;
   text-align: center;
   margin: 20px auto;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Poppins', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.custom-table-bordered tr {
+  border: 2px solid rgb(136, 255, 67); /* Replace #your_custom_color with your desired color code */
 }
 .fetch-container {
   display: flex;
