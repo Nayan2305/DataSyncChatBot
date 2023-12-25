@@ -1,23 +1,18 @@
 import requests
 import json
 
-# Replace with your actual bot token
 bot_token = "6140888607:AAElQv1wgxZVUh7VWNNNLw9Nh6Shid_hhcw"
 offset = None
 
-# Define your base URL for the Telegram API
 # base_url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
 
 while True:
     try:
-        # Construct the URL for getting updates
         base_url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
 
-        # Include the offset if it's not None
         if offset is not None:
             base_url += f"?offset={offset}"
 
-        # Send the GET request to get updates
         response = requests.get(base_url)
         data = response.json()
 
@@ -32,7 +27,6 @@ while True:
                 if message_text=="/start":
                     url = f"http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/add_user_id/{username}"
 
-                    # Rest of your code
                     payload = {
                         "user_id": user_id
                             # Add other payload parameters if needed

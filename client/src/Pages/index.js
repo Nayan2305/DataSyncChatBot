@@ -7,3 +7,4 @@ export { default as PageNotFound } from "./PageNotFound";
 export { default as Contact } from "./Contact";
 export {default as User} from "./User";
 export {default as AboutUs} from "./AboutUs";
+export {default as Editpage} from "./Editpage";
