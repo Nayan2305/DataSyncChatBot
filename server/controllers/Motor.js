@@ -308,3 +308,25 @@ module.exports.changeMotorStatusbybot = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+module.exports.updateIsActiveByMotorId = async (req, res) =>{
+  const { motorId } = req.params; // Extracting motor_id from the request parameters
+  const { isActive } = req.body; // Getting the isActive value from the request body
+
+  try {
+    const updatedMotor = await MotorData.findOneAndUpdate(
+      { motor_id: motorId },
+      { $set: { isActive } },
+      { new: true }
+    );
+
+    if (!updatedMotor) {
+      return res.status(404).json({ error: 'Motor not found' });
+    }
+
+    return res.status(200).json(updatedMotor);
+  } catch (err) {
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

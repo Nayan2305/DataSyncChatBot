@@ -14,6 +14,7 @@ const {
     getMotorByMobileNumber,
     getDataForUser,
     changeMotorStatusbybot,
+    updateIsActiveByMotorId,
     getAllMotorData} = require('../controllers/Motor.js');
 
 // Create user profile
@@ -32,5 +33,7 @@ router.get('/motor/mobile/:mobileNumber', getMotorByMobileNumber);
 router.get('/get-all-motorData/all', getAllMotorData); // New route for getting all data
 router.get('/motor/user/:Id', getDataForUser);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
+router.put('/motors/:motorId', updateIsActiveByMotorId);
+
 // module.exports.router
 module.exports = router ;
