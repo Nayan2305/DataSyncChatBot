@@ -28,7 +28,7 @@ router.put('/change_motor_status/:motor_id', changeMotorStatus);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
 router.put('/add_user_id/:username', addUserToUserProfile);
 router.post("/login", login);
-router.delete("/users/:mobile_number", deleteByMobileNumber);
+router.delete("/delete_users/:mobile_number", deleteByMobileNumber);
 
 
 
@@ -37,7 +37,7 @@ router.get('/motor/mobile/:mobileNumber', getMotorByMobileNumber);
 router.get('/get-all-motorData/all', getAllMotorData); // New route for getting all data
 router.get('/motor/user/:Id', getDataForUser);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
-router.put('/motors/:motorId', updateIsActiveByMotorId);
+router.put('/block_users/:motorId', updateIsActiveByMotorId);
 router.put("/users/:mobile_number", editUserProfile);
 
 // module.exports.router

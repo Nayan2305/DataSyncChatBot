@@ -1,5 +1,6 @@
 import React , {useState} from 'react'
 import './Edit.css';
+import   Navbar from '../Components/Navbar'
 
 const Editpage = () => {
     const [username1, setUsername1] = useState('');
@@ -10,11 +11,15 @@ const Editpage = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       // Add your form submission logic here
+      alert("user data edited");
       console.log('Form submitted:', { username1, username2, username3, machineId });
     };
   return (
+    <>
+    <Navbar/>
     <div className='simple-form'>
         <div className="box">
+          <h2>Edit Form</h2>
        <form>
       <input
         required
@@ -47,12 +52,13 @@ const Editpage = () => {
         onChange={(e) => setMachineId(e.target.value)}
       />
       <button className="login-button" onClick={handleSubmit}>
-        Add User
+        Edit User
       </button>
     </form>
     </div>
     </div>
+    </>
   )
-}
+};
 
 export default Editpage;

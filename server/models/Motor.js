@@ -24,6 +24,10 @@ const motorSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     motor_control: Boolean,
     fault_status: {
       type: Number,
@@ -36,7 +40,7 @@ const motorSchema = new mongoose.Schema(
     Vry: Number,
     Vyb: Number,
     Vbr: Number,
-    isActive: Boolean,
+
   },
   {
     timestamps: true, // This option adds createdAt and updatedAt fields

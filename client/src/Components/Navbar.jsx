@@ -48,14 +48,14 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li
+              {/* <li
                 className="nav-item"
                 style={{ marginRight: "20px", marginLeft: "20px" }}
               >
                 <Link className="nav-link" to="/AboutUs">
                   About Us
                 </Link>
-              </li>
+              </li> */}
               <li
                 className="nav-item"
                 style={{ marginRight: "20px", marginLeft: "20px" }}

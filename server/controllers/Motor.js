@@ -14,6 +14,7 @@ module.exports.createUserProfile = async (req, res) => {
       mobile_number,
       motor_id,
       password: password,
+      isActive,
     });
     await userProfile.save();
     console.log("Success User");

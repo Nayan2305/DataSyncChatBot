@@ -1,13 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./ViewMachine.css";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 import {Axios} from "../config/index.js";
+import axios from 'axios';
 import { Navbar, Footer } from "../Components";
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const [motorId, setMotorId] = useState("");
   const [searchPhone, setSearchPhone] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+
+  const handleDeleteProduct = async (mobile_number) => {
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/delete_users/${mobile_number}`
+      );
+      alert("User Deleted Successfully");
+    } catch (error) {
+      console.error("Error deleting :", error);
+    }
+  };
+  const handleBlockProduct = async (motor_id) => {
+    try {
+      await axios.put(
+        `http://localhost:4000/api/block_users/${motor_id}`
+      );
+      alert("User Deleted Successfully");
+    } catch (error) {
+      console.error("Error deleting :", error);
+    }
+  };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -162,6 +187,7 @@ const SearchPage = () => {
               <th scope="col">Time Created </th>
               <th scope="col">Password</th>
               <th scope="col">Block User</th>
+              <th scope="col">Edit User</th>
               <th scope="col">Delete User</th>
             </tr>
           </thead>
@@ -178,12 +204,17 @@ const SearchPage = () => {
                 {/* Add more fields based on your data structure */}
                 <td>{item.password}</td>
                 <td>  
-                  <button>
+                  <button onClick={() => handleBlockProduct(item.motorId)} >
                     Block User
                   </button>
                 </td>
+                <td>  
+                  <button onClick={() => navigate("/Editpage")}>
+                    Edit User
+                  </button>
+                </td>
                 <td>
-                  <button>
+                  <button onClick={() => handleDeleteProduct(item.mobile_number.substring(2))}>
                     Delete User
                   </button>
                 </td>
