@@ -350,3 +350,30 @@ module.exports.deleteByMobileNumber = async (req, res) => {
   }
 };
 
+module.exports.editUserProfile = async (req, res) => {
+  const mobileNumber = req.params.mobile_number;
+  const { usernames, userid, motor_id} = req.body;
+
+  try {
+    const updateFields = {};
+
+    // Add fields to updateFields only if they are provided
+    if (usernames) updateFields.usernames = usernames;
+    if (userid) updateFields.userid = userid;
+    if (motor_id) updateFields.motor_id = motor_id;
+   
+    const updatedUser = await MotorData.findOneAndUpdate(
+      { mobile_number: mobileNumber },
+      { $set: updateFields },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.json({ message: "User profile updated successfully", user: updatedUser });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
