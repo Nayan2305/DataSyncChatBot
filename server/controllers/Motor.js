@@ -330,3 +330,23 @@ module.exports.updateIsActiveByMotorId = async (req, res) =>{
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+
+
+module.exports.deleteByMobileNumber = async (req, res) => {
+  const mobileNumber = req.params.mobile_number;
+
+  try {
+    const deletedUser = await MotorData.findOneAndDelete({ mobile_number: mobileNumber });
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+

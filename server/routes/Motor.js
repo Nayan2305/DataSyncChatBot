@@ -15,6 +15,7 @@ const {
     getDataForUser,
     changeMotorStatusbybot,
     updateIsActiveByMotorId,
+    deleteByMobileNumber,
     getAllMotorData} = require('../controllers/Motor.js');
 
 // Create user profile
@@ -26,6 +27,8 @@ router.put('/change_motor_status/:motor_id', changeMotorStatus);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
 router.put('/add_user_id/:username', addUserToUserProfile);
 router.post("/login", login);
+router.delete("/users/:mobile_number", deleteByMobileNumber);
+
 
 
 router.get('/motor/:motorId', getMotorById);
