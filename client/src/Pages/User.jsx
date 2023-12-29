@@ -6,9 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { Navbar, Footer } from "../Components";
 
 const User = () => {
-
-  const keysToDisplay = ["Vry", "Vyb", "Vbr", "Ir", "Iy", "Ib", "fault_status", "motor_status", "Last Updated"];
-
   const auth = localStorage.getItem("user");
   const [mobileNumber, setMobileNumber] = useState(""); 
   const [username,setusername] = useState([]);
@@ -113,11 +110,7 @@ const User = () => {
     <>
       <Navbar />
       <div className="user-profile">
-        {/* ... (rest of your JSX) */}
 
-        {/* <button className="btn btn-primary fetch-button" onClick={getData}>
-          Fetch Data
-        </button> */}
         <table className="user-profile-table">
           <tbody>
             <tr>

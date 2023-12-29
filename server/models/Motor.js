@@ -26,7 +26,7 @@ const motorSchema = new mongoose.Schema(
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     motor_control: Boolean,
     fault_status: {
