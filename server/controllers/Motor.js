@@ -314,19 +314,26 @@ module.exports.changeMotorStatusbybot = async (req, res) => {
 module.exports.updateIsActiveByMotorId = async (req, res) =>{
   const { motorId } = req.params; // Extracting motor_id from the request parameters
   const { isActive } = req.body; // Getting the isActive value from the request body
-
+  
   try {
-    const updatedMotor = await MotorData.findOneAndUpdate(
-      { motor_id: motorId },
-      { $set: { isActive } },
-      { new: true }
-    );
-
-    if (!updatedMotor) {
-      return res.status(404).json({ error: 'Motor not found' });
+    console.log(motorId);
+    const motor = await motorSchema.findOne({ motor_id :motorId });
+    console.log(motor);
+    if (!motor) {
+      return res.status(404).json({ error: "User not found" });
     }
 
-    return res.status(200).json(updatedMotor);
+    motor.isActive = isActive;
+    await motor.save();
+
+    // const updatedMotor = await MotorData.findOneAndUpdate(
+    //   { motor_id: motorId },
+    //   { $set: { isActive } },
+    //   { new: true }
+    // );
+
+    return res.status(200).json(motor);
+
   } catch (err) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -336,11 +343,12 @@ module.exports.updateIsActiveByMotorId = async (req, res) =>{
 
 
 module.exports.deleteByMobileNumber = async (req, res) => {
-  const mobileNumber = req.params.mobile_number;
+  const mobileNumber = req.params;
 
   try {
+    console.log(mobileNumber);
     const deletedUser = await MotorData.findOneAndDelete({ mobile_number: mobileNumber });
-
+    console.log(deletedUser);
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -356,7 +364,10 @@ module.exports.editUserProfile = async (req, res) => {
   const { usernames, userid, motor_id} = req.body;
 
   try {
-    const updateFields = {};
+    // const updateFields = {};
+
+    //findone 
+    //
 
     // Add fields to updateFields only if they are provided
     if (usernames) updateFields.usernames = usernames;

@@ -28,7 +28,7 @@ router.put('/change_motor_status/:motor_id', changeMotorStatus);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
 router.put('/add_user_id/:username', addUserToUserProfile);
 router.post("/login", login);
-router.delete("/delete_users/:mobile_number", deleteByMobileNumber);
+router.delete("/delete_users/:mobileNumber", deleteByMobileNumber);
 
 
 

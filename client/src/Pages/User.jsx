@@ -61,16 +61,6 @@ const User = () => {
 
 };
 
-  const handleSaveClick = () => {
-    setIsEditing(false);
-    // You can save the edited data to your backend or perform any other required actions here.
-  };
-
-
-
-  const returnHome = () => {
-    navigate("/");
-  };
 
   const getData = async (e) => {
     if (e) {

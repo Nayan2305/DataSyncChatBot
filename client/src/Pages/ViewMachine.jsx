@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./ViewMachine.css";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
-import {Axios} from "../config/index.js";
-import axios from 'axios';
+import { Axios } from "../config/index.js";
+import axios from "axios";
 import { Navbar, Footer } from "../Components";
 
 const SearchPage = () => {
@@ -22,17 +22,16 @@ const SearchPage = () => {
       console.error("Error deleting :", error);
     }
   };
+
   const handleBlockProduct = async (motor_id) => {
+    console.log(motor_id);
     try {
-      await axios.put(
-        `http://localhost:4000/api/block_users/${motor_id}`
-      );
-      alert("User Deleted Successfully");
+      await axios.put(`http://localhost:4000/api/block_users/${motor_id}`);
+      alert("User Blocked Successfully");
     } catch (error) {
       console.error("Error deleting :", error);
     }
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,9 +60,7 @@ const SearchPage = () => {
     console.log(searchPhone);
     const formattedSearchPhone = `91${searchPhone}`;
     try {
-      const response = await Axios.get(
-        `motor/mobile/${formattedSearchPhone}`
-      );
+      const response = await Axios.get(`motor/mobile/${formattedSearchPhone}`);
 
       console.log("Search phone data:", response.data);
 
@@ -86,9 +83,7 @@ const SearchPage = () => {
   const searchMotor = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.get(
-        `motor/${motorId}`
-      );
+      const response = await Axios.get(`motor/${motorId}`);
 
       console.log("Search motor data:", response.data);
 
@@ -111,9 +106,7 @@ const SearchPage = () => {
   const getalldata = async (e) => {
     e.preventDefault();
     try {
-      const response = await Axios.get(
-        `get-all-motorData/all`
-      );
+      const response = await Axios.get(`get-all-motorData/all`);
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {
@@ -133,7 +126,7 @@ const SearchPage = () => {
     <>
       <Navbar />
       <div className="search-container">
-        <h2 >Search Users</h2>
+        <h2>Search Users</h2>
 
         <div className="search-container">
           <div className="search-input">
@@ -150,7 +143,6 @@ const SearchPage = () => {
             Search
           </button>
         </div>
-      
 
         <div className="search-container">
           <div className="search-input">
@@ -170,10 +162,8 @@ const SearchPage = () => {
           <button className="btn btn-primary" onClick={getalldata}>
             Get all details
           </button>
-   
         </div>
 
-        
         <h2>Filtered Data</h2>
 
         <table className="table custom-table-bordered table-striped table-responsive-md">
@@ -203,18 +193,22 @@ const SearchPage = () => {
                 <td>{new Date(item.createdAt).toLocaleString()}</td>
                 {/* Add more fields based on your data structure */}
                 <td>{item.password}</td>
-                <td>  
-                  <button onClick={() => handleBlockProduct(item.motorId)} >
-                    Block User
+                <td>
+                  <button onClick={() => handleBlockProduct(item.motor_id)}>
+                    {item.isActive ? "Block User" : "UnBlock User"}
                   </button>
                 </td>
-                <td>  
+                <td>
                   <button onClick={() => navigate("/Editpage")}>
                     Edit User
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteProduct(item.mobile_number.substring(2))}>
+                  <button
+                    onClick={() =>
+                      handleDeleteProduct(item.mobile_number.substring(2))
+                    }
+                  >
                     Delete User
                   </button>
                 </td>
