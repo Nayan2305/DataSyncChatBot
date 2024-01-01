@@ -38,7 +38,7 @@ router.get('/get-all-motorData/all', getAllMotorData); // New route for getting 
 router.get('/motor/user/:Id', getDataForUser);
 router.put('/change_motor_statusbybot/:username', changeMotorStatusbybot);
 router.put('/block_users/:motorId', updateIsActiveByMotorId);
-router.put("/users/:mobile_number", editUserProfile);
+router.put("/edit_users/:mobile_number", editUserProfile);
 
 // module.exports.router
 module.exports = router ;

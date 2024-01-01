@@ -234,9 +234,21 @@ const SearchPage = () => {
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => navigate("/Editpage")}>
-                    Edit User
-                  </button>
+                <button
+              onClick={() =>
+                navigate("/Editpage", {
+                  state: {
+                    userData: {
+                      mobileNumber: item.mobile_number.substring(2),
+                      motorId: item.motor_id,
+                      // Add other properties you want to pass
+                    },
+                  },
+                })
+              }
+            >
+              Edit User
+            </button>
                 </td>
                 <td>
                   <button
