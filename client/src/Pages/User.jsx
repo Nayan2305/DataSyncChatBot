@@ -96,6 +96,7 @@ const User = () => {
     getData();
   }, []); // Fetch data when the component mounts
   getData();
+  
   return (
     <>
       <Navbar />

@@ -323,7 +323,7 @@ module.exports.updateIsActiveByMotorId = async (req, res) =>{
       return res.status(404).json({ error: "User not found" });
     }
 
-    motor.isActive = isActive;
+    motor.isActive = !motor.isActive;
     await motor.save();
 
     // const updatedMotor = await MotorData.findOneAndUpdate(
@@ -340,24 +340,25 @@ module.exports.updateIsActiveByMotorId = async (req, res) =>{
 }
 
 
-
-
 module.exports.deleteByMobileNumber = async (req, res) => {
-  const mobileNumber = req.params;
-
+  const { mobileNumber } = req.params;
   try {
-    console.log(mobileNumber);
-    const deletedUser = await MotorData.findOneAndDelete({ mobile_number: mobileNumber });
-    console.log(deletedUser);
+    console.log("mobile:", mobileNumber);
+    
+    // Convert the mobile number to a string, assuming it's stored as a string in the database
+    const mobileNumberString = String(mobileNumber);
+    const deletedUser = await motorSchema.findOneAndDelete({ mobile_number: mobileNumberString });
+    console.log("deleted user", deletedUser);
     if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
     }
-
     return res.json({ message: "User deleted successfully" });
   } catch (error) {
+    console.error("Error deleting user:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
 module.exports.editUserProfile = async (req, res) => {
   const mobileNumber = req.params.mobile_number;
@@ -367,6 +368,7 @@ module.exports.editUserProfile = async (req, res) => {
     // const updateFields = {};
 
     //findone 
+
     //
 
     // Add fields to updateFields only if they are provided

@@ -1,126 +1,159 @@
 import React, { useState, useEffect } from "react";
 import "./ViewMachine.css";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
 import { Axios } from "../config/index.js";
 import axios from "axios";
 import { Navbar, Footer } from "../Components";
 
 const SearchPage = () => {
+  const auth = localStorage.getItem("user");
   const navigate = useNavigate();
   const [motorId, setMotorId] = useState("");
   const [searchPhone, setSearchPhone] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [filteredData1, setFilteredData1] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleDeleteProduct = async (mobile_number) => {
+    console.log(mobile_number);
+    const formattedMobileNumber = `91${mobile_number}`;
+    console.log(formattedMobileNumber);
+
     try {
-      await axios.delete(
-        `http://localhost:4000/api/delete_users/${mobile_number}`
+      const response = await axios.delete(
+        `http://localhost:4000/api/delete_users/${formattedMobileNumber}`
       );
-      alert("User Deleted Successfully");
+
+      if (response.status === 200) {
+        alert("User Deleted Successfully");
+      } else {
+        console.error(
+          "Error deleting. Server responded with status:",
+          response.status
+        );
+      }
     } catch (error) {
-      console.error("Error deleting :", error);
+      console.error("Error deleting :", error.message);
     }
   };
+
+  const getData = async () => {
+    try {
+      const response = await Axios.get(`motor/user/${auth}`);
+
+      const userMobileNumber = response.data.mobile_number;
+
+      if (Array.isArray(response.data)) {
+        setFilteredData1(response.data);
+      } else if (typeof response.data === "object") {
+        setFilteredData1([response.data]);
+      } else {
+        console.error("Unexpected data format:", response.data);
+      }
+    } catch (err) {
+      console.log(" error:", err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleBlockProduct = async (motor_id) => {
     console.log(motor_id);
     try {
       await axios.put(`http://localhost:4000/api/block_users/${motor_id}`);
-      alert("User Blocked Successfully");
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting :", error);
     }
   };
+  
+
+  const fetchData = async () => {
+    try {
+      const response = await Axios.get("motor");
+
+      if (Array.isArray(response.data)) {
+        setFilteredData(response.data);
+      } else {
+        console.error("Fetched data is not an array:", response.data);
+      }
+    } catch (err) {
+      console.log("Fetch error:", err);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await Axios.get("motor");
-        console.log("Fetched data:", response.data);
-
-        // Check if the response data is an array before setting it to state
-        if (Array.isArray(response.data)) {
-          setFilteredData(response.data);
-        } else {
-          console.error("Fetched data is not an array:", response.data);
-          // Handle the error appropriately (e.g., show an error message)
-        }
-      } catch (err) {
-        console.log("Fetch error:", err);
-        // Handle errors appropriately (e.g., show an error message)
-      }
-    };
-
     fetchData();
   }, []);
 
-  const searchPhoneData = async (e) => {
-    e.preventDefault();
-    console.log(searchPhone);
+  const searchPhoneData = async () => {
+    setLoading(true);
+
     const formattedSearchPhone = `91${searchPhone}`;
     try {
       const response = await Axios.get(`motor/mobile/${formattedSearchPhone}`);
 
-      console.log("Search phone data:", response.data);
-
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {
-        // If the response is an object, convert it to an array
         setFilteredData([response.data]);
       } else {
         console.error("Unexpected data format:", response.data);
-        // Handle the error appropriately (e.g., show an error message)
       }
     } catch (err) {
       console.log("Search phone error:", err);
-      // Handle errors appropriately (e.g., show an error message)
+    } finally {
+      setLoading(false);
     }
+
     setSearchPhone("");
   };
 
-  const searchMotor = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    searchPhoneData();
+  }, []);
+
+  const searchMotor = async () => {
     try {
       const response = await Axios.get(`motor/${motorId}`);
-
-      console.log("Search motor data:", response.data);
 
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {
-        // If the response is an object, convert it to an array
         setFilteredData([response.data]);
       } else {
         console.error("Unexpected data format:", response.data);
-        // Handle the error appropriately (e.g., show an error message)
       }
     } catch (err) {
       console.log("Search motor error:", err);
-      // Handle errors appropriately (e.g., show an error message)
     }
     setMotorId("");
   };
 
-  const getalldata = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    searchMotor();
+  }, []);
+
+  const getalldata = async () => {
     try {
       const response = await Axios.get(`get-all-motorData/all`);
       if (Array.isArray(response.data)) {
         setFilteredData(response.data);
       } else if (typeof response.data === "object") {
-        // If the response is an object, convert it to an array
         setFilteredData([response.data]);
       } else {
         console.error("Unexpected data format:", response.data);
-        // Handle the error appropriately (e.g., show an error message)
       }
     } catch (err) {
       console.log("Search motor error:", err);
-      // Handle errors appropriately (e.g., show an error message)
     }
   };
+
+  useEffect(() => {
+    getalldata();
+  }, []);
 
   return (
     <>
@@ -144,8 +177,10 @@ const SearchPage = () => {
           </button>
         </div>
 
+        {loading && <p>Loading...</p>}
+
         <div className="search-container">
-          <div className="search-input">
+        <div className="search-input">
             <label>Motor id: </label>
             <input
               type="text"
@@ -167,7 +202,7 @@ const SearchPage = () => {
         <h2>Filtered Data</h2>
 
         <table className="table custom-table-bordered table-striped table-responsive-md">
-          <thead>
+        <thead>
             <tr>
               <th scope="col">Mobile Number</th>
               <th scope="col">Motor Id</th>
@@ -194,8 +229,8 @@ const SearchPage = () => {
                 {/* Add more fields based on your data structure */}
                 <td>{item.password}</td>
                 <td>
-                  <button onClick={() => handleBlockProduct(item.motor_id)}>
-                    {item.isActive ? "Block User" : "UnBlock User"}
+                <button onClick={() => handleBlockProduct(item.motor_id)}>
+                {item.isActive ? "Block User" : "Unblock User"}
                   </button>
                 </td>
                 <td>
