@@ -367,24 +367,28 @@ module.exports.editUserProfile = async (req, res) => {
     // const updateFields = {};
 
     //findone 
+    const motor = await motorSchema.findOne({ mobile_number :mobileNumber });
+    console.log(motor);
+    if (!motor) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (usernames) motor.usernames = usernames;
+    if (userid) motor.userid = userid;
+    if (motor_id) motor.motor_id = motor_id;
+    // motor.isActive = isActive;
+    await motor.save();
     //
 
     // Add fields to updateFields only if they are provided
-    if (usernames) updateFields.usernames = usernames;
-    if (userid) updateFields.userid = userid;
-    if (motor_id) updateFields.motor_id = motor_id;
+    
    
-    const updatedUser = await MotorData.findOneAndUpdate(
-      { mobile_number: mobileNumber },
-      { $set: updateFields },
-      { new: true }
-    );
+    
 
-    if (!updatedUser) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    // if (!updatedUser) {
+      // return res.status(404).json({ message: "User not found" });
+    // }
 
-    return res.json({ message: "User profile updated successfully", user: updatedUser });
+    return res.status(404).json({ message: "User profile updated successfully", user: updatedUser });
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
