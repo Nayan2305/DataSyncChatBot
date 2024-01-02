@@ -51,7 +51,7 @@ const Home = () => {
  <div className="grid-container">
    <div className="home-container-item">
      <div className="partition">
-       <p>Click to view All User </p>
+       <p>Click to view All Machines </p>
      </div>
 
      <button className="add-button" onClick={handleAddMachineClick}>

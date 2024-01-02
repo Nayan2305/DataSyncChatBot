@@ -3,11 +3,11 @@ import requests
 import time
 
 # Define the API endpoint and URL
-api_url = "http://localhost:4000/api/insert_motor_data/abcd1234"  # Replace with your API endpoint
+api_url = "http://iotapiserver.ap-south-1.elasticbeanstalk.com/api/insert_motor_data/klh45"  # Replace with your API endpoint
 
 # Read data from the CSV file (assuming the CSV file has headers)
 
-csv_file_path = 'g:\SEM7\changes\DataSyncChatBot\server\data.csv'  # Replace with the path to your CSV file
+csv_file_path = 'data.csv'  # Replace with the path to your CSV file
 
 def read_csv_header(csv_file):
     with open(csv_file, "r") as file:

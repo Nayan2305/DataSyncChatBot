@@ -236,15 +236,7 @@ const SearchPage = () => {
                 <td>
                 <button
               onClick={() =>
-                navigate("/Editpage", {
-                  state: {
-                    userData: {
-                      mobileNumber: item.mobile_number.substring(2),
-                      motorId: item.motor_id,
-                      // Add other properties you want to pass
-                    },
-                  },
-                })
+                navigate("/Editpage")
               }
             >
               Edit User
@@ -252,9 +244,12 @@ const SearchPage = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() =>
-                      handleDeleteProduct(item.mobile_number.substring(2))
-                    }
+                    onClick={() => {                      // Save mobile number to localStorage
+                      localStorage.setItem("mobileNumber", item.mobile_number.substring(2));
+                  
+                      // Navigate to "/Editpage"
+                      navigate("/Editpage");
+                    }}
                   >
                     Delete User
                   </button>
