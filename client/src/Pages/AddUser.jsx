@@ -42,43 +42,48 @@ const AddUser = () => {
     // const handleButtonClick = () => {
      
     //   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const password = generatePassword();
-    alert(`Your random password is: ${password}`);
-
-    console.log(password);
-    try {
-      const usernamesArray = [username1, username2, username3].filter(Boolean);
-
-      const data = {
-        usernames: usernamesArray,
-        mobile_number: Phone,
-        motor_id: machineId,
-        password: password,
-      };
-
-      await Axios.post(
-        "create_user_profile",
-        data,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      
-      alert("Password Created Successfully: " + password);
-      console.log("Password Created Successfully:", password);
-
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      const password = generatePassword();
+      alert(`Your random password is: ${password}`);
+    
+      // Validate that the mobile number has exactly 10 digits
+      if (Phone.length !== 10) {
+        alert("Mobile number must have exactly 10 digits");
+        return;
+      }
+    
+      console.log(password);
+      try {
+        const usernamesArray = [username1, username2, username3].filter(Boolean);
+    
+        const data = {
+          usernames: usernamesArray,
+          mobile_number: Phone,
+          motor_id: machineId,
+          password: password,
+        };
+    
+        await Axios.post(
+          "create_user_profile",
+          data,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+    
+        alert("Password Created Successfully: " + password);
+        console.log("Password Created Successfully:", password);
+    
+        navigate("/");
+    
+      } catch (err) {
+        // alert("Phone Number / Motor Id Already Exists");
+        console.error("Error creating user profile:", err);
+      }
       navigate("/");
-
-    } catch (err) {
-      // alert("Phone Number / Motor Id Already Exists");
-      console.error("Error creating user profile:", err);
-    }
-    navigate("/");
-  };
+    };
 
   return (
     <>

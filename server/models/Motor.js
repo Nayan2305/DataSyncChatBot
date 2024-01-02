@@ -32,7 +32,7 @@ const motorSchema = new mongoose.Schema(
     fault_status: {
       type: Number,
       min: 0,
-      max: 9, // Set range between 0 and 9
+      max: 9, 
     },
     Ir: Number,
     Iy: Number,

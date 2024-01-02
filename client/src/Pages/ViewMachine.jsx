@@ -23,14 +23,17 @@ const SearchPage = () => {
       const response = await axios.delete(
         `http://localhost:4000/api/delete_users/${formattedMobileNumber}`
       );
+     
 
       if (response.status === 200) {
         alert("User Deleted Successfully");
+        window.location.reload();
       } else {
         console.error(
           "Error deleting. Server responded with status:",
           response.status
         );
+       
       }
     } catch (error) {
       console.error("Error deleting :", error.message);
@@ -235,20 +238,20 @@ const SearchPage = () => {
                 </td>
                 <td>
                 <button
-              onClick={() =>
+              onClick={() =>{
+                localStorage.setItem("motorid", item.motor_id);
+                localStorage.setItem("mobileNumber", item.mobile_number.substring(2));
+                localStorage.setItem("names", item.usernames);
                 navigate("/Editpage")
-              }
+              }}
             >
               Edit User
             </button>
                 </td>
                 <td>
                   <button
-                    onClick={() => {                      // Save mobile number to localStorage
-                      localStorage.setItem("mobileNumber", item.mobile_number.substring(2));
-                  
-                      // Navigate to "/Editpage"
-                      navigate("/Editpage");
+                    onClick={() => {                    
+                      handleDeleteProduct(item.mobile_number.substring(2));
                     }}
                   >
                     Delete User
